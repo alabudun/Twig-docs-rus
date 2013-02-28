@@ -4,22 +4,19 @@ Twig для дизайнеров
 
 Начало
 --------
-Шаблон - это просто текстовой файл. Из шаблона можно сгенерировать любой текстовой документ(HTML, XML, CSV, LaTeX, и тд.). У Twig шаблонов может быть любое расширение, хотя обычно это ``.html`` или ``.xml``.
-A template is simply a text file. It can generate any text-based format (HTML,
+Шаблон - это просто текстовой файл. Из шаблона можно сгенерировать любой текстовой документ(HTML, XML, CSV, LaTeX, и тд.). Twig шаблоны может не прикреплены за каким-либо расширением, хотя обычно это ``.html`` или ``.xml``.
 
 Шаблон может содержать **переменные** или **выражения**, которые заменяются значениями, во время генерации шаблона.
-values when the template is evaluated, and **tags**, which control the logic
-of the template.
+Также в шаблонах существуют **теги**, котролирующие логику сборки шаблона.
 
-Below is a minimal template that illustrates a few basics. We will cover the
-details later on:
+Рассмотрим небольшой пример шаблона, В котором показаны некоторые основы создания шаблонов:
 
 .. code-block:: html+jinja
 
     <!DOCTYPE html>
     <html>
         <head>
-            <title>My Webpage</title>
+            <title>Мой сайт</title>
         </head>
         <body>
             <ul id="navigation">
@@ -28,32 +25,32 @@ details later on:
             {% endfor %}
             </ul>
 
-            <h1>My Webpage</h1>
-            {{ a_variable }}
+            <h1>Моя статья</h1>
+            {{ text }}
         </body>
     </html>
 
-There are two kinds of delimiters: ``{% ... %}`` and ``{{ ... }}``. The first
-one is used to execute statements such as for-loops, the latter prints the
-result of an expression to the template.
+Здесь присутвует два вида разделителей:
+ - ``{% ... %}`` используется для выполнения выражений: циклов, условий, тегов
+ - ``{{ ... }}`` используется для вывода значений выражения в шаблон
 
-IDEs Integration
+Интеграция с IDE
 ----------------
 
-Many IDEs support syntax highlighting and auto-completion for Twig:
+Множество IDE поддерживают подсветку синтаксиса и автодополнение:
 
-* *Textmate* via the `Twig bundle`_
-* *Vim* via the `Jinja syntax plugin`_
-* *Netbeans* via the `Twig syntax plugin`_ (until 7.1, native as of 7.2)
+* *Textmate* :`Twig bundle`_
+* *Vim* :`Jinja syntax plugin`_
+* *Netbeans* :`Twig syntax plugin`_ (до 7.1, встроен с 7.2)
 * *PhpStorm* (native as of 2.1)
-* *Eclipse* via the `Twig plugin`_
-* *Sublime Text* via the `Twig bundle`_
-* *GtkSourceView* via the `Twig language definition`_ (used by gedit and other projects)
-* *Coda* and *SubEthaEdit* via the `Twig syntax mode`_
-* *Coda 2* via the `other Twig syntax mode`_
-* *Komodo* and *Komodo Edit* via the Twig highlight/syntax check mode
-* *Notepad++* via the `Notepad++ Twig Highlighter`_
-* *Emacs* via `web-mode.el`_
+* *Eclipse* :`Twig plugin`_
+* *Sublime Text* :`Twig bundle`_
+* *GtkSourceView* :`Twig language definition`_ (используется gedit и другие проекты)
+* *Coda* и *SubEthaEdit* :`Twig syntax mode`_
+* *Coda 2* :`other Twig syntax mode`_
+* *Komodo* и *Komodo Edit* :Twig highlight/syntax check mode
+* *Notepad++* :`Notepad++ Twig Highlighter`_
+* *Emacs* : `web-mode.el`_
 
 Variables
 ---------
