@@ -72,51 +72,44 @@ Twig для дизайнеров
     {# Подобное не будет работать foo.data-foo #}
     {{ attribute(foo, 'data-foo') }}
 
-.. Замечание::
-
+.. note::
     Выжно понимать, что фигурные скобки - *не* часть переменной, а оператор вывода значений переменных в шаблон. Поэтому при использовании переменных в тегах не нужно ставить фигурные скобки.
 
-If a variable or attribute does not exist, you will get back a ``null`` value
-when the ``strict_variables`` option is set to ``false``, otherwise Twig will
-throw an error (see :ref:`environment options<environment_options>`).
+Если переменная, или атрибут не найден, то в шаблоне это заменится на ``null`` значение. Однако если опция ``strict_variables`` установленна как ``true``, Twig выдаст сообщение об ошибке (см. :ref:`environment options<environment_options>`).
 
-.. sidebar:: Implementation
+.. sidebar:: Подробнее об устройстве переменных
 
-    For convenience sake ``foo.bar`` does the following things on the PHP
-    layer:
+    Рассмотрим что будет в PHP, когда в Twig ищет переменную ``foo.bar``
 
-    * check if ``foo`` is an array and ``bar`` a valid element;
-    * if not, and if ``foo`` is an object, check that ``bar`` is a valid property;
-    * if not, and if ``foo`` is an object, check that ``bar`` is a valid method
-      (even if ``bar`` is the constructor - use ``__construct()`` instead);
-    * if not, and if ``foo`` is an object, check that ``getBar`` is a valid method;
-    * if not, and if ``foo`` is an object, check that ``isBar`` is a valid method;
-    * if not, return a ``null`` value.
+    * Проверим: ``foo`` - массив и ``bar`` один из его элементов;
+    * Проверим: ``foo`` - объект и ``bar`` одно из его свойств;
+    * Проверим: ``foo`` - объект и ``bar`` валидный метод (если ``bar`` конструктор - use ``__construct()``);
+    * Проверим: ``foo`` - объект и существует метод ``getBar``;
+    * Проверим: ``foo`` - объект и существует метод ``isBar``;
+    * В противном случае ``null``.
 
-    ``foo['bar']`` on the other hand only works with PHP arrays:
+    ``foo['bar']`` в этом случае используются строго массивы:
 
-    * check if ``foo`` is an array and ``bar`` a valid element;
-    * if not, return a ``null`` value.
+    * Проверим: ``foo`` - массив и ``bar`` один из его элементов;
+    * В противном случае ``null``.
 
-.. Замечание::
+.. note::
 
-    If you want to get a dynamic attribute on a variable, use the
-    :doc:`attribute<functions/attribute>` function instead.
+    Если вы хотите получить динамическое свойство объекта, используйте :doc:`attribute<functions/attribute>` функцию вместо этого.
 
-Global Variables
+Глобальные переменные
 ~~~~~~~~~~~~~~~~
 
-The following variables are always available in templates:
+Эти переменные всегда доступны в шаблоне:
 
-* ``_self``: references the current template;
-* ``_context``: references the current context;
-* ``_charset``: references the current charset.
+* ``_self``: ссылается на текущий шаблон;
+* ``_context``: ссылается на текущий контекст;
+* ``_charset``: ссылается на текущую кодировку.
 
-Setting Variables
+Установка переменных
 ~~~~~~~~~~~~~~~~~
 
-You can assign values to variables inside code blocks. Assignments use the
-:doc:`set<tags/set>` tag:
+Вы можете устанавливать значения переменных в блоках кода для этого используйте тег :doc:`set<tags/set>`:
 
 .. code-block:: jinja
 
@@ -124,10 +117,10 @@ You can assign values to variables inside code blocks. Assignments use the
     {% set foo = [1, 2] %}
     {% set foo = {'foo': 'bar'} %}
 
-Filters
+Фильтры
 -------
 
-Variables can be modified by **filters**. Filters are separated from the
+Переменные можно фильтровать. Filters are separated from the
 variable by a pipe symbol (``|``) and may have optional arguments in
 parentheses. Multiple filters can be chained. The output of one filter is
 applied to the next.
@@ -394,6 +387,7 @@ parent block:
     conditional inheritance.
 
 .. Замечание::
+.. note::
 
     Twig also supports multiple inheritance with the so called horizontal reuse
     with the help of the :doc:`use<tags/use>` tag. This is an advanced feature
@@ -410,6 +404,7 @@ everything by default.
 Twig supports both, automatic escaping is enabled by default.
 
 .. Замечание::
+.. note::
 
     Automatic escaping is only supported if the *escaper* extension has been
     enabled (which is the default).
@@ -536,6 +531,7 @@ Twig allows expressions everywhere. These work very similar to regular PHP and
 even if you're not working with PHP you should feel comfortable with it.
 
 .. Замечание::
+.. note::
 
     The operator precedence is as follows, with the lowest-precedence
     operators listed first: ``b-and``, ``b-xor``, ``b-or``, ``or``, ``and``,
@@ -640,6 +636,7 @@ You can combine multiple expressions with the following operators:
 * ``(expr)``: Groups an expression.
 
 .. Замечание::
+.. note::
 
     Twig also support bitwise operators (``b-and``, ``b-xor``, and ``b-or``).
 
