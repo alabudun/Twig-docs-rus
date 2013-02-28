@@ -1,16 +1,13 @@
 ``extends``
 ===========
 
-The ``extends`` tag can be used to extend a template from another one.
+Тег ``extends`` используется для наследования шаблонов.
 
 .. Примечание::
 
-    Like PHP, Twig does not support multiple inheritance. So you can only have
-    one extends tag called per rendering. However, Twig supports horizontal
-    :doc:`reuse<use>`.
+    Как и в PHP Twig не допускает множественного наследования. Однако, Twig поддерживает горизонтальное :doc:`reuse<use>`.
 
-Let's define a base template, ``base.html``, which defines a simple HTML
-skeleton document:
+Давайте определим базовый шаблон, ``base.html``, для простой страницы с двумя колонками:
 
 .. code-block:: html+jinja
 
@@ -19,35 +16,31 @@ skeleton document:
         <head>
             {% block head %}
                 <link rel="stylesheet" href="style.css" />
-                <title>{% block title %}{% endblock %} - My Webpage</title>
+                <title>{% block title %}{% endblock %} - Мой сайт</title>
             {% endblock %}
         </head>
         <body>
             <div id="content">{% block content %}{% endblock %}</div>
             <div id="footer">
                 {% block footer %}
-                    &copy; Copyright 2011 by <a href="http://domain.invalid/">you</a>.
+                    &copy; Copyright 2013 <a href="http://example.com/">Вы</a>.
                 {% endblock %}
             </div>
         </body>
     </html>
 
-In this example, the :doc:`block<block>` tags define four blocks that child
-templates can fill in.
+В этом примере тегом the :doc:`block<tags/block>` определяется 4 блока, которые мы и заменим. Все теги ``block`` сообщат шаблонизатору, что в последствии их можно будет переопределить
 
-All the ``block`` tag does is to tell the template engine that a child
-template may override those portions of the template.
-
-Child Template
+Дочерний шаблон
 --------------
 
-A child template might look like this:
+Дочерний шаблон может выглядеть так:
 
 .. code-block:: jinja
 
     {% extends "base.html" %}
 
-    {% block title %}Index{% endblock %}
+    {% block title %}Главная{% endblock %}
     {% block head %}
         {{ parent() }}
         <style type="text/css">
@@ -55,29 +48,19 @@ A child template might look like this:
         </style>
     {% endblock %}
     {% block content %}
-        <h1>Index</h1>
+        <h1>Главная</h1>
         <p class="important">
-            Welcome on my awesome homepage.
+            Приветсвую на своем потрясном сайте!
         </p>
     {% endblock %}
 
-The ``extends`` tag is the key here. It tells the template engine that this
-template "extends" another template. When the template system evaluates this
-template, first it locates the parent. The extends tag should be the first tag
-in the template.
+Тег ``extends`` здесь ключевой, он сообщает шаблонизатору кто "родитель" шаблона и существует ли он. Когда шаблон обрабаотывается, сначала обрабаотывается родительский. Тег наследования ``extends`` должен быть первым в шаблоне.
 
-Note that since the child template doesn't define the ``footer`` block, the
-value from the parent template is used instead.
+Следует учесть, что так как блок ``footer`` не определен, то используется родительский
 
-You can't define multiple ``block`` tags with the same name in the same
-template. This limitation exists because a block tag works in "both"
-directions. That is, a block tag doesn't just provide a hole to fill - it also
-defines the content that fills the hole in the *parent*. If there were two
-similarly-named ``block`` tags in a template, that template's parent wouldn't
-know which one of the blocks' content to use.
+Вы можете постоянно переопределять ``block`` блоком с таким же именем. Такие преобразования возможны потому что блоки работают в обоих направлениях.
 
-If you want to print a block multiple times you can however use the
-``block`` function:
+Если вы хотите вывести блок несколько раз, вы можете использовать функцию ``block``:
 
 .. code-block:: jinja
 
@@ -85,26 +68,22 @@ If you want to print a block multiple times you can however use the
     <h1>{{ block('title') }}</h1>
     {% block body %}{% endblock %}
 
-Parent Blocks
+Родительские блоки
 -------------
 
-It's possible to render the contents of the parent block by using the
-:doc:`parent<../functions/parent>` function. This gives back the results of
-the parent block:
+Возможно отображать значение родительского блока, используя функцию :doc:`parent<functions/parent>`:
 
 .. code-block:: jinja
 
     {% block sidebar %}
-        <h3>Table Of Contents</h3>
-        ...
+        <h3>Заголовок</h3>
         {{ parent() }}
     {% endblock %}
 
-Named Block End-Tags
+Параметры для закрытия блока
 --------------------
 
-Twig allows you to put the name of the block after the end tag for better
-readability:
+Twig позволяет указывать какой именно блок стоит закрыть:
 
 .. code-block:: jinja
 
@@ -114,13 +93,12 @@ readability:
         {% endblock inner_sidebar %}
     {% endblock sidebar %}
 
-Of course, the name after the ``endblock`` word must match the block name.
+Конечно после тега ``endblock`` слово должно содержать название блока.
 
-Block Nesting and Scope
+Вложенность блоков и области видимости
 -----------------------
 
-Blocks can be nested for more complex layouts. Per default, blocks have access
-to variables from outer scopes:
+Блоки могут быть вложены друг в друга. По умолчанию блоки имеют доступ к переменным других областей видимости
 
 .. code-block:: jinja
 
@@ -128,11 +106,10 @@ to variables from outer scopes:
         <li>{% block loop_item %}{{ item }}{% endblock %}</li>
     {% endfor %}
 
-Block Shortcuts
+Блочные сокращения
 ---------------
 
-For blocks with few content, it's possible to use a shortcut syntax. The
-following constructs do the same:
+Для блоков с небольшим содержимым можно использовать сокращения. Следующие конструкции одинаковы:
 
 .. code-block:: jinja
 
@@ -144,17 +121,16 @@ following constructs do the same:
 
     {% block title page_title|title %}
 
-Dynamic Inheritance
+Динамическое наследование
 -------------------
 
-Twig supports dynamic inheritance by using a variable as the base template:
+Twig поддерживает динамическое наследование, используя переменную в качестве названия:
 
 .. code-block:: jinja
 
     {% extends some_var %}
 
-If the variable evaluates to a ``Twig_Template`` object, Twig will use it as
-the parent template::
+Если переменная имеет значение объекта ``Twig_Template`` Twig использует это как родительский шаблон::
 
     // {% extends layout %}
 
@@ -163,37 +139,31 @@ the parent template::
     $twig->display('template.twig', array('layout' => $layout));
 
 .. versionadded:: 1.2
-    The possibility to pass an array of templates has been added in Twig 1.2.
+    Возможность проверять шаблоны по массиву добавлена в Twig 1.2.
 
-You can also provide a list of templates that are checked for existence. The
-first template that exists will be used as a parent:
+Вы можете указать массив названий шаблонов. Первый найденный шаблон будет использоваться в качестве родителя:
 
 .. code-block:: jinja
 
     {% extends ['layout.html', 'base_layout.html'] %}
 
-Conditional Inheritance
+Условия при установке наследования
 -----------------------
 
-As the template name for the parent can be any valid Twig expression, it's
-possible to make the inheritance mechanism conditional:
+В качестве названия может быть использовано любое выражение, на пример:
 
 .. code-block:: jinja
 
     {% extends standalone ? "minimum.html" : "base.html" %}
 
-In this example, the template will extend the "minimum.html" layout template
-if the ``standalone`` variable evaluates to ``true``, and "base.html"
-otherwise.
+В этом примере шаблон будет унаследован "minimum.html", если ``standalone`` вернет ``true``, в противном случае "base.html"
 
-How blocks work?
+Как устроенны блоки?
 ----------------
 
-A block provides a way to change how a certain part of a template is rendered
-but it does not interfere in any way with the logic around it.
+Блоки позволяют менять все, что находится внутри них, но никак не влияют на то, что происходит вокруг них
 
-Let's take the following example to illustrate how a block work and more
-importantly, how it does not work:
+В следующем примере можно увидеть, как блоки работают, и что самое главное - как они не работают:
 
 .. code-block:: jinja
 
@@ -206,9 +176,7 @@ importantly, how it does not work:
         {% endblock %}
     {% endfor %}
 
-If you render this template, the result would be exactly the same with or
-without the ``block`` tag. The ``block`` inside the ``for`` loop is just a way
-to make it overridable by a child template:
+Если вы напишете такой блок, то при обработке на каждой итерации цикла, содержимое блока ``post`` будет перезаписанно:
 
 .. code-block:: jinja
 
@@ -223,9 +191,7 @@ to make it overridable by a child template:
         </article>
     {% endblock %}
 
-Now, when rendering the child template, the loop is going to use the block
-defined in the child template instead of the one defined in the base one; the
-executed template is then equivalent to the following one:
+Теперь при обработке дочернего шаблона, "родительский" цикл использует "детское" определение блока и в итоге получится это:
 
 .. code-block:: jinja
 
@@ -236,7 +202,7 @@ executed template is then equivalent to the following one:
         </article>
     {% endfor %}
 
-Let's take another example: a block included within an ``if`` statement:
+Давайте попробуем другой пример с ``if`` условием:
 
 .. code-block:: jinja
 
@@ -248,12 +214,9 @@ Let's take another example: a block included within an ``if`` statement:
         {% endblock head %}
     {% endif %}
 
-Contrary to what you might think, this template does not define a block
-conditionally; it just makes overridable by a child template the output of
-what will be rendered when the condition is ``true``.
+Вопреки тому, что вы могли подумать, этот шаблон не определит блок условно, а только сделать переписываемым "дочерним" шаблоном и будет выведен, когда условие будет выполнено.
 
-If you want the output to be displayed conditionally, use the following
-instead:
+Если вы хотите, чтобы вывод блока был определен условно, напишите следующую конструкцию:
 
 .. code-block:: jinja
 
