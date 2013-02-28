@@ -356,19 +356,15 @@ to change the default value:
 Работа с принудительным экранированием
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-If manual escaping is enabled, it is **your** responsibility to escape
-variables if needed. What to escape? Any variable you don't trust.
+Если экранирование отключенно, то это *ваша* обязанность. Что экранировать? Любую переменную, которой вы не доверяете.
 
-Escaping works by piping the variable through the
-:doc:`escape<filters/escape>` or ``e`` filter:
+Экранирование доступно через фильтры :doc:`escape<filters/escape>` или ``e``:
 
 .. code-block:: jinja
 
     {{ user.username|e }}
 
-By default, the ``escape`` filter uses the ``html`` strategy, but depending on
-the escaping context, you might want to explicitly use any other available
-strategies:
+По умолчанию фильтр ``escape`` использует ``html`` режим экранирования, но в зависимости от ситуации вы можете этот режим изменить с помощью атрибута фильтра:
 
 .. code-block:: jinja
 
@@ -377,58 +373,45 @@ strategies:
     {{ user.username|e('url') }}
     {{ user.username|e('html_attr') }}
 
-Working with Automatic Escaping
+Работа с автоматическим экранированием
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Whether automatic escaping is enabled or not, you can mark a section of a
-template to be escaped or not by using the :doc:`autoescape<tags/autoescape>`
-tag:
+Вне зависимости настроек шаблонизатора, вы можете включить экранирование для блока кода с помощью тега :doc:`autoescape<tags/autoescape>`:
 
 .. code-block:: jinja
 
     {% autoescape %}
-        Everything will be automatically escaped in this block (using the HTML strategy)
+        Все написанное будет экранированно
     {% endautoescape %}
 
-By default, auto-escaping uses the ``html`` escaping strategy. If you output
-variables in other contexts, you need to explicitly escape them with the
-appropriate escaping strategy:
+По умолчанию  ``autoescape`` использует режим ``html``, однако это легко исправить
 
 .. code-block:: jinja
 
     {% autoescape 'js' %}
-        Everything will be automatically escaped in this block (using the JS strategy)
+        Все написанное будет экранированно, как js-код
     {% endautoescape %}
 
-Escaping
+Экранирование кода
 --------
 
-It is sometimes desirable or even necessary to have Twig ignore parts it would
-otherwise handle as variables or blocks. For example if the default syntax is
-used and you want to use ``{{`` as raw string in the template and not start a
-variable you have to use a trick.
-
-The easiest way is to output the variable delimiter (``{{``) by using a variable
-expression:
+Иногда необходимо шаблонизатору вывести данные без обработки, самым простым решением будет:
 
 .. code-block:: jinja
 
     {{ '{{' }}
 
-For bigger sections it makes sense to mark a block
-:doc:`verbatim<tags/verbatim>`.
+Однако когда таких данных много, можно использовать тег :doc:`verbatim<tags/verbatim>`.
 
-Macros
+Макросы
 ------
 
 .. versionadded:: 1.12
-    Support for default argument values was added in Twig 1.12.
+    Возможность устанавливать значения аргументов по умолчанию доступна с Twig 1.12.
 
-Macros are comparable with functions in regular programming languages. They
-are useful to reuse often used HTML fragments to not repeat yourself.
+Макросы схожи с функциями в обычных языках программирования. Они полезны для повторного использования повторяющегося HTML-кода.
 
-A macro is defined via the :doc:`macro<tags/macro>` tag. Here is a small example
-(subsequently called ``forms.html``) of a macro that renders a form element:
+Макрос определяется тегом :doc:`macro<tags/macro>`. Небольшой пример:
 
 .. code-block:: jinja
 
@@ -436,8 +419,7 @@ A macro is defined via the :doc:`macro<tags/macro>` tag. Here is a small example
         <input type="{{ type|default('text') }}" name="{{ name }}" value="{{ value|e }}" size="{{ size|default(20) }}" />
     {% endmacro %}
 
-Macros can be defined in any template, and need to be "imported" via the
-:doc:`import<tags/import>` tag before being used:
+Макросы могут быть определенны в любом шаблоне и должны быть "импортированны" тегом :doc:`import<tags/import>` перед использованием:
 
 .. code-block:: jinja
 
@@ -445,22 +427,20 @@ Macros can be defined in any template, and need to be "imported" via the
 
     <p>{{ forms.input('username') }}</p>
 
-Alternatively, you can import individual macro names from a template into the
-current namespace via the :doc:`from<tags/from>` tag and optionally alias them:
+Также макросу можно задать временное имя с помощью тега :doc:`from<tags/from>`:
 
 .. code-block:: jinja
 
     {% from 'forms.html' import input as input_field %}
 
     <dl>
-        <dt>Username</dt>
+        <dt>Логин</dt>
         <dd>{{ input_field('username') }}</dd>
-        <dt>Password</dt>
+        <dt>Пароль</dt>
         <dd>{{ input_field('password', '', 'password') }}</dd>
     </dl>
 
-A default value can also be defined for macro arguments when not provided in a
-macro call:
+Значения по умолчанию могут быть определенны при объявлении аргументов макроса:
 
 .. code-block:: jinja
 
@@ -468,67 +448,57 @@ macro call:
         <input type="{{ type }}" name="{{ name }}" value="{{ value|e }}" size="{{ size }}" />
     {% endmacro %}
 
-Expressions
+Выражения
 -----------
 
-Twig allows expressions everywhere. These work very similar to regular PHP and
-even if you're not working with PHP you should feel comfortable with it.
+Операторы
+~~~~~~~~
+
+Twig позволяет использовать логические операторы везде. Они работают также как в PHP.
 
 .. Замечание::
-.. note::
 
-    The operator precedence is as follows, with the lowest-precedence
-    operators listed first: ``b-and``, ``b-xor``, ``b-or``, ``or``, ``and``,
+    Приоритет операторов показан ниже, сначала идут операторы с наименьшим приоритетом и по возрастающей:
+    ``b-and``, ``b-xor``, ``b-or``, ``or``, ``and``,
     ``==``, ``!=``, ``<``, ``>``, ``>=``, ``<=``, ``in``, ``..``, ``+``,
     ``-``, ``~``, ``*``, ``/``, ``//``, ``%``, ``is``, and ``**``.
 
-Literals
+Данные
 ~~~~~~~~
 
 .. versionadded:: 1.5
-    Support for hash keys as names and expressions was added in Twig 1.5.
+    Поддержка хешей названий и выражений добавлена в Twig 1.5.
 
-The simplest form of expressions are literals. Literals are representations
-for PHP types such as strings, numbers, and arrays. The following literals
-exist:
 
-* ``"Hello World"``: Everything between two double or single quotes is a
-  string. They are useful whenever you need a string in the template (for
-  example as arguments to function calls, filters or just to extend or include
-  a template). A string can contain a delimiter if it is preceded by a
-  backslash (``\``) -- like in ``'It\'s good'``.
+Простейшая форма выражений - Twig-данные. Twig-данные представляются в PHP как строки, числа, и массивы. Доступные типы данных:
 
-* ``42`` / ``42.23``: Integers and floating point numbers are created by just
-  writing the number down. If a dot is present the number is a float,
-  otherwise an integer.
+* Строки - ``"Привет мир"``: Все, что написано между кавычек (``'``/``"``) является строкой. Это полезно, когда нужно использовать строчные значения внутри шаблонов, на пример для аргументов функций и фильтров, кавычки должны быть экранированны бэкслешем (``\``) -- например: ``'It\'s good'``.
 
-* ``["foo", "bar"]``: Arrays are defined by a sequence of expressions
-  separated by a comma (``,``) and wrapped with squared brackets (``[]``).
+* Числа - ``42`` / ``42.23``: Целочисленные и десятичные. Числа записываются так как есть. Если нет точки - число считается целым.
 
-* ``{"foo": "bar"}``: Hashes are defined by a list of keys and values
-  separated by a comma (``,``) and wrapped with curly braces (``{}``):
+* Массивы - ``["foo", "bar"]``: Массивы определяются списком данных, разделенными запятой (``,``) и обернуты в квадратные скобки (``[]``).
+
+* Хэши - ``{"foo": "bar"}``: Хеши определяются списком "ключ - значение"б разделенными запятой (``,``) и обернуты в фигурные скобки (``{}``).
 
   .. code-block:: jinja
 
-    {# keys as string #}
+    {# ключи - строки #}
     { 'foo': 'foo', 'bar': 'bar' }
 
-    {# keys as names (equivalent to the previous hash) -- as of Twig 1.5 #}
+    {# ключи - названия (эквивалентно предыдущему варианту) -- доступно с Twig 1.5 #}
     { foo: 'foo', bar: 'bar' }
 
-    {# keys as integer #}
+    {# ключи - цифры #}
     { 2: 'foo', 4: 'bar' }
 
-    {# keys as expressions (the expression must be enclosed into parentheses) -- as of Twig 1.5 #}
+    {# ключи - выражения (выражения должны быть включены в скобки ) -- доступно с Twig 1.5 #}
     { (1 + 1): 'foo', (a ~ 'b'): 'bar' }
 
-* ``true`` / ``false``: ``true`` represents the true value, ``false``
-  represents the false value.
+* Булевы - ``true`` / ``false``: правда и ложь соответсвенно.
 
-* ``null``: ``null`` represents no specific value. This is the value returned
-  when a variable does not exist. ``none`` is an alias for ``null``.
+* Пустое - ``null`` специфичная переменная, означает то, что переменная не определена. ``none`` не аналог для ``null``.
 
-Arrays and hashes can be nested:
+Массивы и хеши могут быть вложены друг в друга:
 
 .. code-block:: jinja
 
@@ -536,70 +506,60 @@ Arrays and hashes can be nested:
 
 .. tip::
 
-    Using double-quoted or single-quoted strings has no impact on performance
-    but string interpolation is only supported in double-quoted strings.
+    Использование двойных или одинарных кавычек не влияет на производительность, но вставка строк возможна только в двойных кавычках.
 
-Math
-~~~~
+Математика
+~~~~~~~~~~
 
-Twig allows you to calculate with values. This is rarely useful in templates
-but exists for completeness' sake. The following operators are supported:
+Twig позволяет производить любые математические операции над данными. Это редко используется в шаблонах, но поддерживается:
 
-* ``+``: Adds two objects together (the operands are casted to numbers). ``{{
-  1 + 1 }}`` is ``2``.
+* ``+``: Соединяет два объекта вместе, также складывает цифры ``{{
+  1 + 1 }}`` -> ``2``.
 
-* ``-``: Subtracts the second number from the first one. ``{{ 3 - 2 }}`` is
-  ``1``.
+* ``-``: Операция вычитания для чисел ``{{ 3 - 2 }}`` -> ``1``.
 
-* ``/``: Divides two numbers. The returned value will be a floating point
-  number. ``{{ 1 / 2 }}`` is ``{{ 0.5 }}``.
+* ``/``: Операция деления для чисел ``{{ 1 / 2 }}`` -> ``{{ 0.5 }}``. Результат будет десятичным.
 
-* ``%``: Calculates the remainder of an integer division. ``{{ 11 % 7 }}`` is
-  ``4``.
+* ``//``: Операция деления для чисел. ``{{20 // 7 }}`` -> ``2``. Результат будет целочисленным. Фактически отсекается часть после ``.``.
 
-* ``//``: Divides two numbers and returns the truncated integer result. ``{{
-  20 // 7 }}`` is ``2``.
+* ``%``: Вычисляет остаток от деления ``{{ 11 % 7 }}`` -> ``4``.
 
-* ``*``: Multiplies the left operand with the right one. ``{{ 2 * 2 }}`` would
-  return ``4``.
+* ``*``: Операция умножения для чисел ``{{ 2 * 2 }}`` -> ``4``.
 
-* ``**``: Raises the left operand to the power of the right operand. ``{{ 2 **
-  3 }}`` would return ``8``.
+* ``**``: Возводит "левое" число в "правую" степень ``{{ 2 ** 3 }}`` -> ``8``.
 
-Logic
+Логика
 ~~~~~
 
-You can combine multiple expressions with the following operators:
+Вы можете комбинировать выражения используя следующие операторы:
 
-* ``and``: Returns true if the left and the right operands are both true.
+* ``and``: Результат: ``true``, если "левое" и "правое" значения ``true``.
 
-* ``or``: Returns true if the left or the right operand is true.
+* ``or``: Результат: ``true``, если "левое" или "правое" значения ``true``.
 
-* ``not``: Negates a statement.
+* ``not``: Результат: противоположное значение.
 
-* ``(expr)``: Groups an expression.
+* ``(expr)``: Группа выражений.
 
 .. Замечание::
-.. note::
 
-    Twig also support bitwise operators (``b-and``, ``b-xor``, and ``b-or``).
+    Также Twig поддерживает бинарные операторы: (``b-and``, ``b-xor``, and ``b-or``).
 
-Comparisons
+Сравнение
 ~~~~~~~~~~~
 
-The following comparison operators are supported in any expression: ``==``,
-``!=``, ``<``, ``>``, ``>=``, and ``<=``.
+Следующие операторы доступны в любых выражениях и работают как в любом языке программирования: ``==``, ``!=``, ``<``, ``>``, ``>=``, and ``<=``.
 
-Containment Operator
+Оператор содержания
 ~~~~~~~~~~~~~~~~~~~~
 
-The ``in`` operator performs containment test.
+Оператор ``in`` проводит анализ на совпадения.
 
-It returns ``true`` if the left operand is contained in the right:
+Результатом будет ``true``, если "левое" значение найдено в "правом":
 
 .. code-block:: jinja
 
-    {# returns true #}
+    {# Вернет true #}
 
     {{ 1 in [1, 2, 3] }}
 
@@ -610,90 +570,79 @@ It returns ``true`` if the left operand is contained in the right:
     You can use this filter to perform a containment test on strings, arrays,
     or objects implementing the ``Traversable`` interface.
 
-To perform a negative test, use the ``not in`` operator:
+Для отрицания используйте оператор ``not in``:
 
 .. code-block:: jinja
 
     {% if 1 not in [1, 2, 3] %}
 
-    {# is equivalent to #}
+    {# эквивалентно #}
     {% if not (1 in [1, 2, 3]) %}
 
-Test Operator
-~~~~~~~~~~~~~
+Тестирующий оператор
+~~~~~~~~~~~~~~~~~~~~
 
-The ``is`` operator performs tests. Tests can be used to test a variable against
-a common expression. The right operand is name of the test:
+Оператор ``is`` проверяет данные на соответствие
 
 .. code-block:: jinja
 
-    {# find out if a variable is odd #}
-
     {{ name is odd }}
 
-Tests can accept arguments too:
+Можно использовать аргументы:
 
 .. code-block:: jinja
 
     {% if loop.index is divisibleby(3) %}
 
-Tests can be negated by using the ``is not`` operator:
+Для отрицания используйте оператор ``is not``:
 
 .. code-block:: jinja
 
     {% if loop.index is not divisibleby(3) %}
 
-    {# is equivalent to #}
+    {# эквивалентно #}
     {% if not (loop.index is divisibleby(3)) %}
 
-Go to the :doc:`tests<tests/index>` page to learn more about the built-in
-tests.
+Увидеть результаты работы можно посмотреть в тестах :doc:`tests<tests/index>`.
 
-Other Operators
+Другие операторы
 ~~~~~~~~~~~~~~~
 
 .. versionadded:: 1.12.0
     Support for the extended ternary operator was added in Twig 1.12.0.
 
-The following operators are very useful but don't fit into any of the other
-categories:
+Следующие операторы очень полезны, но не попадают ни в какую категорию:
 
-* ``..``: Creates a sequence based on the operand before and after the
-  operator (this is just syntactic sugar for the :doc:`range<functions/range>`
-  function).
+* ``..``: Создает последовательность от "левого" до "правого" операнда, на пример ``1..10``
 
-* ``|``: Applies a filter.
+* ``|``: Применяет фильтр
 
-* ``~``: Converts all operands into strings and concatenates them. ``{{ "Hello
-  " ~ name ~ "!" }}`` would return (assuming ``name`` is ``'John'``) ``Hello
-  John!``.
+* ``~``: Преобразует все операнды в строки и соединяет их, на пример ``{{ "Привет " ~ name ~ "!" }}`` выведет (предположим, что в ``name`` 'Вася') ``Привет Вася!``.
 
-* ``.``, ``[]``: Gets an attribute of an object.
+* ``.``, ``[]``: Получает атрибут объекта.
 
-* ``?:``: The ternary operator:
+* ``?:``: Тернарный оператор
 
   .. code-block:: jinja
 
-      {{ foo ? 'yes' : 'no' }}
+      {{ foo ? 'Да' : 'Нет' }}
 
-      {# as of Twig 1.12.0 #}
-      {{ foo ?: 'no' }} == {{ foo ? foo : 'no' }}
-      {{ foo ? 'yes' }} == {{ foo ? 'yes' : '' }}
+      {# Доступно с Twig 1.12.0 #}
+      {{ foo ?: 'Нет' }} == {{ foo ? foo : 'Нет' }}
+      {{ foo ? 'Да' }} == {{ foo ? 'Да' : '' }}
 
-String Interpolation
+Строковые замены
 ~~~~~~~~~~~~~~~~~~~~
 
 .. versionadded:: 1.5
-    String interpolation was added in Twig 1.5.
+    Строковые замены доступны с Twig 1.5.
 
-String interpolation (`#{expression}`) allows any valid expression to appear
-within a *double-quoted string*. The result of evaluating that expression is
-inserted into the string:
+Строковая заменя (`#{expression}`) доступна для любого выражения, находящегося в *строке с двойными скобками*. Например:
 
 .. code-block:: jinja
 
-    {{ "foo #{bar} baz" }}
-    {{ "foo #{1 + 2} baz" }}
+    {{ "Привет #{name}! Как дела?" }}
+    {{ "Дважды два =  #{2*2}" }}
 
 Whitespace Control
 ------------------
