@@ -637,68 +637,60 @@ Twig позволяет производить любые математичес
 .. versionadded:: 1.5
     Строковые замены доступны с Twig 1.5.
 
-Строковая заменя (`#{expression}`) доступна для любого выражения, находящегося в *строке с двойными скобками*. Например:
+Строковая заменя (``#{expression}``) доступна для любого выражения, находящегося в *строке с двойными скобками*. Например:
 
 .. code-block:: jinja
 
     {{ "Привет #{name}! Как дела?" }}
     {{ "Дважды два =  #{2*2}" }}
 
-Whitespace Control
+Управление пробелами
 ------------------
 
 .. versionadded:: 1.1
     Tag level whitespace control was added in Twig 1.1.
 
-The first newline after a template tag is removed automatically (like in PHP.)
-Whitespace is not further modified by the template engine, so each whitespace
-(spaces, tabs, newlines etc.) is returned unchanged.
+Первая строка после тега удаляется автоматически, как в PHP. Пробелы, табуляция, пустые строки же не удаляются.
 
-Use the ``spaceless`` tag to remove whitespace *between HTML tags*:
+Используйте тег ``spaceless`` для удаления пробельных символов *между HTML-тегами*:
 
 .. code-block:: jinja
 
     {% spaceless %}
         <div>
-            <strong>foo</strong>
+            <strong>Жирная строка</strong>
         </div>
     {% endspaceless %}
 
-    {# output will be <div><strong>foo</strong></div> #}
+    {# на выходе будет <div><strong>Жирная строка</strong></div> #}
 
-In addition to the spaceless tag you can also control whitespace on a per tag
-level. By using the whitespace control modifier on your tags, you can trim
-leading and or trailing whitespace:
+Также вы можете убирать пробельные символы для блоков кода:
 
 .. code-block:: jinja
 
     {% set value = 'no spaces' %}
-    {#- No leading/trailing whitespace -#}
+    {#- Нет начальных и конечных пробелов -#}
     {%- if true -%}
         {{- value -}}
     {%- endif -%}
 
-    {# output 'no spaces' #}
+    {# Выведет 'no spaces' #}
 
-The above sample shows the default whitespace control modifier, and how you can
-use it to remove whitespace around tags.  Trimming space will consume all whitespace
-for that side of the tag.  It is possible to use whitespace trimming on one side
-of a tag:
+Можно убирать пробелы между значением переменной и предыдущим символом, опционально для конца и начала переменной:
 
 .. code-block:: jinja
 
-    {% set value = 'no spaces' %}
+    {% set value = 'Нет пробелам!' %}
     <li>    {{- value }}    </li>
 
-    {# outputs '<li>no spaces    </li>' #}
+    {# выведет '<li>Нет пробелам!    </li>' #}
 
-Extensions
+Расширения
 ----------
 
-Twig can be easily extended.
+Twig может быть легко расширен.
 
-If you are looking for new tags, filters, or functions, have a look at the Twig official
-`extension repository`_.
+Если вы ищете какой-то тег/фильтр/функцию загляните в оффициальный репозиторий `extension repository`_.
 
 If you want to create your own, read the :ref:`Creating an
 Extension<creating_extensions>` chapter.
