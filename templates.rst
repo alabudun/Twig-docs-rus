@@ -39,50 +39,42 @@ Twig для дизайнеров
 
 Множество IDE поддерживают подсветку синтаксиса и автодополнение:
 
-* *Textmate* :`Twig bundle`_
-* *Vim* :`Jinja syntax plugin`_
-* *Netbeans* :`Twig syntax plugin`_ (до 7.1, встроен с 7.2)
+* *Textmate* : `Twig bundle`_
+* *Vim* : `Jinja syntax plugin`_
+* *Netbeans* : `Twig syntax plugin`_ (до 7.1, встроен с 7.2)
 * *PhpStorm* (native as of 2.1)
-* *Eclipse* :`Twig plugin`_
-* *Sublime Text* :`Twig bundle`_
-* *GtkSourceView* :`Twig language definition`_ (используется gedit и другие проекты)
-* *Coda* и *SubEthaEdit* :`Twig syntax mode`_
-* *Coda 2* :`other Twig syntax mode`_
-* *Komodo* и *Komodo Edit* :Twig highlight/syntax check mode
-* *Notepad++* :`Notepad++ Twig Highlighter`_
-* *Emacs* : `web-mode.el`_
+* *Eclipse* : `Twig plugin`_
+* *Sublime Text* : `Twig bundle`_
+* *GtkSourceView* : `Twig language definition`_ (используется gedit и другие проекты)
+* *Coda* и *SubEthaEdit* : `Twig syntax mode`_
+* *Coda 2* : `other Twig syntax mode`_
+* *Komodo* и *Komodo Edit* : Twig highlight/syntax check mode
+* *Notepad++* : `Notepad++ Twig Highlighter`_
+* *Emacs* :  `web-mode.el`_
 
-Variables
+Переменные
 ---------
 
-The application passes variables to the templates you can mess around in the
-template. Variables may have attributes or elements on them you can access
-too. How a variable looks like heavily depends on the application providing
-those.
+Все переменные, переданные в шаблон можно использовать повторно. Переменные могут включать в себя аттрибуты. Вид переменных зависит от приложения.
 
-You can use a dot (``.``) to access attributes of a variable (methods or
-properties of a PHP object, or items of a PHP array), or the so-called
-"subscript" syntax (``[]``):
+Атрибутами переменных являются методы и свойства PHP-объектов, или переменные массивов.
+Для доступа к атрибутам можно использовать (``.``), или (``[]``):
 
 .. code-block:: jinja
 
     {{ foo.bar }}
     {{ foo['bar'] }}
 
-When the attribute contains special characters (like ``-`` that would be
-interpreted as the minus operator), use the ``attribute`` function instead to
-access the variable attribute:
+Когда атрибуты содержат спец.символы (например ``-`` воспримется, как математический оператор "минус"), используйте функцию ``attribute``:
 
 .. code-block:: jinja
 
-    {# equivalent to the non-working foo.data-foo #}
+    {# Подобное не будет работать foo.data-foo #}
     {{ attribute(foo, 'data-foo') }}
 
-.. note::
+.. Замечание::
 
-    It's important to know that the curly braces are *not* part of the
-    variable but the print statement. If you access variables inside tags
-    don't put the braces around.
+    Выжно понимать, что фигурные скобки - *не* часть переменной, а оператор вывода значений переменных в шаблон. Поэтому при использовании переменных в тегах не нужно ставить фигурные скобки.
 
 If a variable or attribute does not exist, you will get back a ``null`` value
 when the ``strict_variables`` option is set to ``false``, otherwise Twig will
@@ -106,7 +98,7 @@ throw an error (see :ref:`environment options<environment_options>`).
     * check if ``foo`` is an array and ``bar`` a valid element;
     * if not, return a ``null`` value.
 
-.. note::
+.. Замечание::
 
     If you want to get a dynamic attribute on a variable, use the
     :doc:`attribute<functions/attribute>` function instead.
@@ -401,7 +393,7 @@ parent block:
     more advanced features like block nesting, scope, dynamic inheritance, and
     conditional inheritance.
 
-.. note::
+.. Замечание::
 
     Twig also supports multiple inheritance with the so called horizontal reuse
     with the help of the :doc:`use<tags/use>` tag. This is an advanced feature
@@ -417,7 +409,7 @@ everything by default.
 
 Twig supports both, automatic escaping is enabled by default.
 
-.. note::
+.. Замечание::
 
     Automatic escaping is only supported if the *escaper* extension has been
     enabled (which is the default).
@@ -543,7 +535,7 @@ Expressions
 Twig allows expressions everywhere. These work very similar to regular PHP and
 even if you're not working with PHP you should feel comfortable with it.
 
-.. note::
+.. Замечание::
 
     The operator precedence is as follows, with the lowest-precedence
     operators listed first: ``b-and``, ``b-xor``, ``b-or``, ``or``, ``and``,
@@ -647,7 +639,7 @@ You can combine multiple expressions with the following operators:
 
 * ``(expr)``: Groups an expression.
 
-.. note::
+.. Замечание::
 
     Twig also support bitwise operators (``b-and``, ``b-xor``, and ``b-or``).
 
