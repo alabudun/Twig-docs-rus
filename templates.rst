@@ -120,45 +120,36 @@ Twig для дизайнеров
 Фильтры
 -------
 
-Переменные можно фильтровать. Filters are separated from the
-variable by a pipe symbol (``|``) and may have optional arguments in
-parentheses. Multiple filters can be chained. The output of one filter is
-applied to the next.
+Переменные можно фильтровать. Фильтры отделяются от переменных прямой чертой (``|``) и могут иметь аргументы внутри. Можно использовать сразу несколько фильтров, фильтры применяются по очереди.
 
-The following example removes all HTML tags from the ``name`` and title-cases
-it:
+В этом примере из ``name`` удаляются все HTML-теги и title-cases:
 
 .. code-block:: jinja
 
     {{ name|striptags|title }}
 
-Filters that accept arguments have parentheses around the arguments. This
-example will join a list by commas:
+Аргументы фильтров записываются в скобках после названия. В следующем примере к значению ``list`` добавится ``,``:
 
 .. code-block:: jinja
 
     {{ list|join(', ') }}
 
-To apply a filter on a section of code, wrap it with the
-:doc:`filter<tags/filter>` tag:
+Чтобы применить фильтр к блоку кода - оберните его тэгом :doc:`filter<tags/filter>`:
 
 .. code-block:: jinja
 
     {% filter upper %}
-      This text becomes uppercase
+        этот текст будет выведен в верхнем регистре
     {% endfilter %}
 
-Go to the :doc:`filters<filters/index>` page to learn more about the built-in
-filters.
+Подробнее о фильтрах :doc:`filters<filters/index>`
 
-Functions
+Функции
 ---------
 
-Functions can be called to generate content. Functions are called by their
-name followed by parentheses (``()``) and may have arguments.
+Функции можно вызвать для генирации контента. Функции вызываются по их названию, как фильтры, аргументы также вставляются в (``()``).
 
-For instance, the ``range`` function returns a list containing an arithmetic
-progression of integers:
+Для примера функция ``range`` возвращает список целых чисел, аргументами является начальное и конечное число списка
 
 .. code-block:: jinja
 
@@ -166,16 +157,15 @@ progression of integers:
         {{ i }},
     {% endfor %}
 
-Go to the :doc:`functions<functions/index>` page to learn more about the
-built-in functions.
+Подробнее о функциях :doc:`functions<functions/index>`.
 
-Named Arguments
+Названия аргументов
 ---------------
 
 .. versionadded:: 1.12
-    Support for named arguments was added in Twig 1.12.
+    Поддержка названий аргументов была добавлена в Twig 1.12.
 
-Arguments for filters and functions can also be passed as *named arguments*:
+Аргументы для фильтров и функций могут быть дополнительно названы:
 
 .. code-block:: jinja
 
@@ -183,63 +173,56 @@ Arguments for filters and functions can also be passed as *named arguments*:
         {{ i }},
     {% endfor %}
 
-Using named arguments makes your templates more explicit about the meaning of
-the values you pass as arguments:
+Использование именованных аргументов делает шаблоны более понятными:
 
 .. code-block:: jinja
 
     {{ data|convert_encoding('UTF-8', 'iso-2022-jp') }}
 
-    {# versus #}
+    {# В сравнении с  #}
 
     {{ data|convert_encoding(from='iso-2022-jp', to='UTF-8') }}
 
-Named arguments also allow you to skip some arguments for which you don't want
+Также именованные аргументы полезны, когда вам не хочется менять некоторые аргументы по умолчанию, но и записывать их вам тоже не хочется
 to change the default value:
 
 .. code-block:: jinja
 
-    {# the first argument is the date format, which defaults to the global date format if null is passed #}
+    {# Первый аргумент - формат даты, который задан в приложении глобально #}
     {{ "now"|date(null, "Europe/Paris") }}
 
-    {# or skip the format value by using a named argument for the timezone #}
+    {# Или можно пропустить ``format``, но указать ``timezone`` #}
     {{ "now"|date(timezone="Europe/Paris") }}
 
-You can also use both positional and named arguments in one call, which is not
-recommended as it can be confusing:
+Вы также можете использовать оба варианта записи аргументов, однако это не рекомендуется, потому что приведет к путанице:
 
 .. code-block:: jinja
 
-    {# both work #}
+    {# Оба варианта - рабочие #}
     {{ "now"|date('d/m/Y H:i', timezone="Europe/Paris") }}
     {{ "now"|date(timezone="Europe/Paris", 'd/m/Y H:i') }}
 
 .. tip::
 
-    Each function and filter documentation page has a section where the names
-    of all arguments are listed when supported.
+    По каждой функции и каждому фильтру есть страница документации, где указаны какие аргументы доступны и их названия
 
-Control Structure
+Управляющие структуры
 -----------------
 
-A control structure refers to all those things that control the flow of a
-program - conditionals (i.e. ``if``/``elseif``/``else``), ``for``-loops, as
-well as things like blocks. Control structures appear inside ``{% ... %}``
-blocks.
+К управляющим структурам относится все условные операторы (такие как  ``if``/``elseif``/``else``), ``for``-loops. Управляющие структуры находятся внутри``{% ... %}`` блоков.
 
-For example, to display a list of users provided in a variable called
-``users``, use the :doc:`for<tags/for>` tag:
+На пример чтобы отобразить список пользователей ``users``, используется тег :doc:`for<tags/for>`:
 
 .. code-block:: jinja
 
-    <h1>Members</h1>
+    <h1>Пользователи</h1>
     <ul>
         {% for user in users %}
             <li>{{ user.username|e }}</li>
         {% endfor %}
     </ul>
 
-The :doc:`if<tags/if>` tag can be used to test an expression:
+Тег :doc:`if<tags/if>` может быть использован для проверки:
 
 .. code-block:: jinja
 
@@ -251,37 +234,33 @@ The :doc:`if<tags/if>` tag can be used to test an expression:
         </ul>
     {% endif %}
 
-Go to the :doc:`tags<tags/index>` page to learn more about the built-in tags.
+Подробнее о тегах :doc:`tags<tags/index>`.
 
-Comments
---------
+Комментирование
+--------------
 
-To comment-out part of a line in a template, use the comment syntax ``{# ...
-#}``. This is useful for debugging or to add information for other template
-designers or yourself:
+Для комментирования части кода, или пояснений к нему используйте ``{# ... #}``.
 
 .. code-block:: jinja
 
-    {# note: disabled template because we no longer use this
+    {# Примечание: закоментированно, тк больше не используется
         {% for user in users %}
             ...
         {% endfor %}
     #}
 
-Including other Templates
+Подключение шаблонов
 -------------------------
 
-The :doc:`include<tags/include>` tag is useful to include a template and
-return the rendered content of that template into the current one:
+Тег :doc:`include<tags/include>` возвращает содержимое шаблона из файла:
 
 .. code-block:: jinja
 
     {% include 'sidebar.html' %}
 
-Per default included templates are passed the current context.
+По умолчанию содержимое подключаемых шаблонов встает в место вызова
 
-The context that is passed to the included template includes variables defined
-in the template:
+В подключенном шаблоне определены переменные родительского шаблона
 
 .. code-block:: jinja
 
@@ -289,31 +268,22 @@ in the template:
         {% include "render_box.html" %}
     {% endfor %}
 
-The included template ``render_box.html`` is able to access ``box``.
+Подключенный шаблон ``render_box.html`` имеет доступ к переменной ``box``.
 
-The filename of the template depends on the template loader. For instance, the
-``Twig_Loader_Filesystem`` allows you to access other templates by giving the
-filename. You can access templates in subdirectories with a slash:
+Название файла зависит от загрузчика шаблонов. Например ``Twig_Loader_Filesystem`` позволяет получить шаблон по названию файла. Также можно указать путь до дериктории шаблона, используя слэш ``/``:
 
 .. code-block:: jinja
 
     {% include "sections/articles/sidebar.html" %}
 
-This behavior depends on the application embedding Twig.
-
-Template Inheritance
+Наследование шаблонов
 --------------------
 
-The most powerful part of Twig is template inheritance. Template inheritance
-allows you to build a base "skeleton" template that contains all the common
-elements of your site and defines **blocks** that child templates can
-override.
+Самая мощная часть Twig - наследование шаблонов. Наследование шаблонов позволяет задать скелет вашего шаблона, а затем переопределить некоторые блоки.
 
-Sounds complicated but is very basic. It's easier to understand it by
-starting with an example.
+Звучит сложно, однако стоит просто попробовать.
 
-Let's define a base template, ``base.html``, which defines a simple HTML
-skeleton document that you might use for a simple two-column page:
+Давайте определим базовый шаблон, ``base.html``, для простой страницы с двумя колонками:
 
 .. code-block:: html+jinja
 
@@ -322,31 +292,28 @@ skeleton document that you might use for a simple two-column page:
         <head>
             {% block head %}
                 <link rel="stylesheet" href="style.css" />
-                <title>{% block title %}{% endblock %} - My Webpage</title>
+                <title>{% block title %}{% endblock %} - Мой сайт</title>
             {% endblock %}
         </head>
         <body>
             <div id="content">{% block content %}{% endblock %}</div>
             <div id="footer">
                 {% block footer %}
-                    &copy; Copyright 2011 by <a href="http://domain.invalid/">you</a>.
+                    &copy; Copyright 2013 <a href="http://example.com/">Вы</a>.
                 {% endblock %}
             </div>
         </body>
     </html>
 
-In this example, the :doc:`block<tags/block>` tags define four blocks that
-child templates can fill in. All the ``block`` tag does is to tell the
-template engine that a child template may override those portions of the
-template.
+В этом примере тегом the :doc:`block<tags/block>` определяется 4 блока, которые мы и заменим. Все теги ``block`` сообщат шаблонизатору, что в последствии их можно будет переопределить
 
-A child template might look like this:
+Дочерний шаблон может выглядеть так:
 
 .. code-block:: jinja
 
     {% extends "base.html" %}
 
-    {% block title %}Index{% endblock %}
+    {% block title %}Главная{% endblock %}
     {% block head %}
         {{ parent() }}
         <style type="text/css">
@@ -354,62 +321,39 @@ A child template might look like this:
         </style>
     {% endblock %}
     {% block content %}
-        <h1>Index</h1>
+        <h1>Главная</h1>
         <p class="important">
-            Welcome to my awesome homepage.
+            Приветсвую на своем потрясном сайте!
         </p>
     {% endblock %}
 
-The :doc:`extends<tags/extends>` tag is the key here. It tells the template
-engine that this template "extends" another template. When the template system
-evaluates this template, first it locates the parent. The extends tag should
-be the first tag in the template.
+Здесь используется тег :doc:`extends<tags/extends>`. Он сообщает шаблонизатору, что этот шаблон наследуется от другово. *Тег ``extends`` должен быть первым в шаблоне*
 
-Note that since the child template doesn't define the ``footer`` block, the
-value from the parent template is used instead.
+Следует учесть, что так как блок ``footer`` не определен, то используется родительский
 
-It's possible to render the contents of the parent block by using the
-:doc:`parent<functions/parent>` function. This gives back the results of the
-parent block:
+Возможно отображать значение родительского блока, используя функцию :doc:`parent<functions/parent>`:
 
 .. code-block:: jinja
 
     {% block sidebar %}
-        <h3>Table Of Contents</h3>
-        ...
+        <h3>Оглавление</h3>
         {{ parent() }}
     {% endblock %}
 
-.. tip::
+.. Дополнительно::
 
-    The documentation page for the :doc:`extends<tags/extends>` tag describes
-    more advanced features like block nesting, scope, dynamic inheritance, and
-    conditional inheritance.
+    Подробнее про ``extends`` :doc:`extends<tags/extends>`. Описанны интересные возможности использования блоков, такие как динамическое наследование, условное наследование, вложенность и сферы применения.
 
 .. Замечание::
-.. note::
 
-    Twig also supports multiple inheritance with the so called horizontal reuse
-    with the help of the :doc:`use<tags/use>` tag. This is an advanced feature
-    hardly ever needed in regular templates.
+    Twig также поддерживает множественное наследование с использованием тега :doc:`use<tags/use>` tag. Это продвинутая возможность и врятли она понадобится в простых шаблонах.
 
-HTML Escaping
+Экранирование
 -------------
 
-When generating HTML from templates, there's always a risk that a variable
-will include characters that affect the resulting HTML. There are two
-approaches: manually escaping each variable or automatically escaping
-everything by default.
+Генерируя HTML всегда есть возможность вывести специальные символы, ломающие логику HTML. Здесь есть два варианта - принудительное экранирование, или установленное по умолчанию для всех переменных.
 
-Twig supports both, automatic escaping is enabled by default.
-
-.. Замечание::
-.. note::
-
-    Automatic escaping is only supported if the *escaper* extension has been
-    enabled (which is the default).
-
-Working with Manual Escaping
+Работа с принудительным экранированием
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 If manual escaping is enabled, it is **your** responsibility to escape
