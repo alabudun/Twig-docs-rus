@@ -1,43 +1,42 @@
 ``include``
 ===========
 
-The ``include`` statement includes a template and return the rendered content
-of that file into the current namespace:
+Тег ``include`` подключает другой шаблон. Фактически он заменяет себя обработанным содержимым подключенного шаблона:
 
 .. code-block:: jinja
 
     {% include 'header.html' %}
-        Body
+        Сверху меня шапка, а снизу подвал
     {% include 'footer.html' %}
 
-Included templates have access to the variables of the active context.
+Подключенные шаблоны имеют доступ к переменным "подключателя".
 
-If you are using the filesystem loader, the templates are looked for in the
-paths defined by it.
+Если вы используйте автозагрузчик, то поиск шаблона на подключения будет производится в заданных ему дерикториях.
 
-You can add additional variables by passing them after the ``with`` keyword:
+При подключении с помощью ключа ``with`` вы можете указать переменные специально для подключенного шаблона:
 
 .. code-block:: jinja
-
-    {# template.html will have access to the variables from the current context and the additional ones provided #}
+    {# template.html получит доступ к переменным "подключателя" и дополнительно объявленным после ключа ``with`` #}
     {% include 'template.html' with {'foo': 'bar'} %}
 
     {% set vars = {'foo': 'bar'} %}
     {% include 'template.html' with vars %}
 
-You can disable access to the context by appending the ``only`` keyword:
+Вы можете ограничить доступ к переменным "подключателя" используя ключ ``only``:
 
 .. code-block:: jinja
 
-    {# only the foo variable will be accessible #}
+    {# template.html будет доступна только переменная ``foo`` #}
     {% include 'template.html' with {'foo': 'bar'} only %}
 
 .. code-block:: jinja
 
-    {# no variables will be accessible #}
+    {# template.html не имеет доступа к переменным "подключателя" #}
     {% include 'template.html' only %}
 
 .. tip::
+
+    Когда подключаемый шаблон создан конечным пользователям вам следует
 
     When including a template created by an end user, you should consider
     sandboxing it. More information in the :doc:`Twig for Developers<../api>`
