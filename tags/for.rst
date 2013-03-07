@@ -1,12 +1,11 @@
 ``for``
 =======
 
-Loop over each item in a sequence. For example, to display a list of users
-provided in a variable called ``users``:
+Цикл перебирает элементы списка. Для примера вывод списка пользователей, записанного в переменной ``users``:
 
 .. code-block:: jinja
 
-    <h1>Members</h1>
+    <h1>Пользователи</h1>
     <ul>
         {% for user in users %}
             <li>{{ user.username|e }}</li>
@@ -15,11 +14,9 @@ provided in a variable called ``users``:
 
 .. Примечание::
 
-    A sequence can be either an array or an object implementing the
-    ``Traversable`` interface.
+    Списком может быть либо массив, либо объект с интерфейсом ``Traversable``.
 
-If you do need to iterate over a sequence of numbers, you can use the ``..``
-operator:
+Если вам нужно перебрать последовательность чисел - используйте оператор ``..``:
 
 .. code-block:: jinja
 
@@ -27,9 +24,9 @@ operator:
         * {{ i }}
     {% endfor %}
 
-The above snippet of code would print all numbers from 0 to 10.
+Этот код выведет числа от 0 до 10
 
-It can be also useful with letters:
+Это может быть полезно с буквами:
 
 .. code-block:: jinja
 
@@ -37,7 +34,7 @@ It can be also useful with letters:
         * {{ letter }}
     {% endfor %}
 
-The ``..`` operator can take any expression at both sides:
+Оператор ``..`` принимает любые фильтры слева и справа:
 
 .. code-block:: jinja
 
@@ -45,27 +42,26 @@ The ``..`` operator can take any expression at both sides:
         * {{ letter }}
     {% endfor %}
 
-.. tip:
+.. На заметку:
 
-    If you need a step different from 1, you can use the ``range`` function
-    instead.
+    Если вам нужен больший шаг итерации - используйте функцию ``range``.
 
-The `loop` variable
+Переменная `loop`
 -------------------
 
-Inside of a ``for`` loop block you can access some special variables:
+Внутри цикла ``for`` вы можете получить значения специальных переменных:
 
 ===================== =============================================================
-Variable              Description
+Переменная             Описание
 ===================== =============================================================
-``loop.index``        The current iteration of the loop. (1 indexed)
-``loop.index0``       The current iteration of the loop. (0 indexed)
-``loop.revindex``     The number of iterations from the end of the loop (1 indexed)
-``loop.revindex0``    The number of iterations from the end of the loop (0 indexed)
-``loop.first``        True if first iteration
-``loop.last``         True if last iteration
-``loop.length``       The number of items in the sequence
-``loop.parent``       The parent context
+``loop.index``        Номер текущей итерации, начиная с 1
+``loop.index0``       Номер текущей итерации, начиная с 0
+``loop.revindex``     Номер текущей итерации с конца, заканчивается 1
+``loop.revindex0``    Номер текущей итерации с конца, заканчивается 0
+``loop.first``        В переменной ``true``, если цикл на первом элементе
+``loop.last``         В переменной ``true``, если цикл на последнем элементе
+``loop.length``       Количество переменных в списке
+``loop.parent``       Родительский контекст
 ===================== =============================================================
 
 .. code-block:: jinja
@@ -76,20 +72,15 @@ Variable              Description
 
 .. Примечание::
 
-    The ``loop.length``, ``loop.revindex``, ``loop.revindex0``, and
-    ``loop.last`` variables are only available for PHP arrays, or objects that
-    implement the ``Countable`` interface. They are also not available when
-    looping with a condition.
+    Переменные ``loop.length``, ``loop.revindex``, ``loop.revindex0``, и ``loop.last`` доступны только для массивов. Также они доступны в цикле с условием.
 
 .. versionadded:: 1.2
-    The ``if`` modifier support has been added in Twig 1.2.
+    Модификатор ``if`` поддерживается с Twig 1.2.
 
-Adding a condition
+Добавление условий
 ------------------
 
-Unlike in PHP, it's not possible to ``break`` or ``continue`` in a loop. You
-can however filter the sequence during iteration which allows you to skip
-items. The following example skips all the users which are not active:
+В отличии от PHP в Twig нет возможности прервать, или продолжить (``break``/``continue``) цикл. Однако вы можете фильтровать вывод c помощью модификатора ``if``, пропуская элементы. В следующем примере пропускаются все не активные пользователи.
 
 .. code-block:: jinja
 
@@ -99,23 +90,16 @@ items. The following example skips all the users which are not active:
         {% endfor %}
     </ul>
 
-The advantage is that the special loop variable will count correctly thus not
-counting the users not iterated over. Keep in mind that properties like
-``loop.last`` will not be defined when using loop conditions.
+Приемущество заключается в том, что такой цикл будет считать только подходящие под условия значения списка.
 
 .. Примечание::
 
-    Using the ``loop`` variable within the condition is not recommended as it
-    will probably not be doing what you expect it to. For instance, adding a
-    condition like ``loop.index > 4`` won't work as the index is only
-    incremented when the condition is true (so the condition will never
-    match).
+    Использование ``loop``-переменных вместе с условиями не рекомендуется, тк может вызвать неожиданные проблемы. На пример добавив условие ``loop.index > 4`` цикл никогда не будет пройден, тк каждая итерация выполняется только после выполнения условия.
 
-The `else` Clause
+Отметка `else`
 -----------------
 
-If no iteration took place because the sequence was empty, you can render a
-replacement block by using ``else``:
+Если ни одной итерации не произошло, тк цикл пуст, или условия вывода не выполнились - можно вывести замену, используя ``else``:
 
 .. code-block:: jinja
 
@@ -123,33 +107,32 @@ replacement block by using ``else``:
         {% for user in users %}
             <li>{{ user.username|e }}</li>
         {% else %}
-            <li><em>no user found</em></li>
+            <li><em>Не найдено ни одного пользователя</em></li>
         {% endfor %}
     </ul>
 
-Iterating over Keys
+Перебор по ключам
 -------------------
 
-By default, a loop iterates over the values of the sequence. You can iterate
-on keys by using the ``keys`` filter:
+По умолчанию цикл перебирает значения последовательности. Вместо этого можно перебрать ключи, используя фильтр ``keys``:
 
 .. code-block:: jinja
 
-    <h1>Members</h1>
+    <h1>ID пользователей</h1>
     <ul>
         {% for key in users|keys %}
             <li>{{ key }}</li>
         {% endfor %}
     </ul>
 
-Iterating over Keys and Values
+Перебор по ключам и значениям
 ------------------------------
 
-You can also access both keys and values:
+Также можно перебрать ключи и значения вместе:
 
 .. code-block:: jinja
 
-    <h1>Members</h1>
+    <h1>Пользователи</h1>
     <ul>
         {% for key, user in users %}
             <li>{{ key }}: {{ user.username|e }}</li>

@@ -1,18 +1,17 @@
 ``if``
 ======
 
-The ``if`` statement in Twig is comparable with the if statements of PHP.
+Условия ``if`` в Twig сравнимы с PHP.
 
-In the simplest form you can use it to test if an expression evaluates to
-``true``:
+Проще всего проверить ``true``/``false`` выражения:
 
 .. code-block:: jinja
 
     {% if online == false %}
-        <p>Our website is in maintenance mode. Please, come back later.</p>
+        <p>Сайт на обслуживании, зайдите позже.</p>
     {% endif %}
 
-You can also test if an array is not empty:
+Вы также можете проверить, пустой ли массив:
 
 .. code-block:: jinja
 
@@ -26,18 +25,16 @@ You can also test if an array is not empty:
 
 .. Примечание::
 
-    If you want to test if the variable is defined, use ``if users is
-    defined`` instead.
+    Если вы хотите проверить определена ли переменная, используйте выражение ``if users is defined``.
 
-For multiple branches ``elseif`` and ``else`` can be used like in PHP. You can use
-more complex ``expressions`` there too:
+Ветвление условий ``elseif`` и ``else`` Можно использовать также, как в PHP:
 
 .. code-block:: jinja
 
     {% if kenny.sick %}
-        Kenny is sick.
+        Кенни болен.
     {% elseif kenny.dead %}
-        You killed Kenny!  You bastard!!!
+        Ты убил Кенни! Ублюдок!!!
     {% else %}
-        Kenny looks okay --- so far
+        Кенни в порядке - до сих пор
     {% endif %}

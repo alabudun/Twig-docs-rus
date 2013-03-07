@@ -1,8 +1,6 @@
 ``from``
 ========
 
-The ``from`` tags import :doc:`macro<../tags/macro>` names into the current
-namespace. The tag is documented in detail in the documentation for the
-:doc:`import<../tags/import>` tag.
+Тег ``from`` импортирует :doc:`macro<../tags/macro>` макросы в текущее пространство имен. Подробнее тег описан в документации к тегу :doc:`import<../tags/import>`.
 
-.. seealso:: :doc:`macro<../tags/macro>`, :doc:`import<../tags/import>`
+.. Посмотреть также:: :doc:`macro<../tags/macro>`, :doc:`import<../tags/import>`

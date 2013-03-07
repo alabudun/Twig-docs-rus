@@ -1,21 +1,20 @@
 ``filter``
 ==========
 
-Filter sections allow you to apply regular Twig filters on a block of template
-data. Just wrap the code in the special ``filter`` section:
+C помощью тега ``filter`` можно применить фильтры не к одной переменной, а сразу к блоку кода:
 
 .. code-block:: jinja
 
     {% filter upper %}
-        This text becomes uppercase
+        Весь текст написанный здесь будет выведет в верхнем регистре
     {% endfilter %}
 
-You can also chain filters:
+Вы также можете связывать фильтры:
 
 .. code-block:: jinja
 
     {% filter lower|escape %}
-        <strong>SOME TEXT</strong>
+        <strong>ЖИРНЫЙ ТЕКСТ</strong>
     {% endfilter %}
 
-    {# outputs "&lt;strong&gt;some text&lt;/strong&gt;" #}
+    {# на выходе: "&lt;strong&gt;жирный текст&lt;/strong&gt;" #}

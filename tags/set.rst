@@ -1,8 +1,7 @@
 ``set``
 =======
 
-Inside code blocks you can also assign values to variables. Assignments use
-the ``set`` tag and can have multiple targets:
+Внутри шаблонов можно создавать переменные с помощью тега ``set``:
 
 .. code-block:: jinja
 
@@ -16,7 +15,7 @@ the ``set`` tag and can have multiple targets:
 
     {% set foo, bar = 'foo', 'bar' %}
 
-The ``set`` tag can also be used to 'capture' chunks of text:
+С помощью тега ``set`` в переменную можно записать блок:
 
 .. code-block:: jinja
 
@@ -25,8 +24,3 @@ The ``set`` tag can also be used to 'capture' chunks of text:
         ...
       </div>
     {% endset %}
-
-.. caution::
-
-    If you enable automatic output escaping, Twig will only consider the
-    content to be safe when capturing chunks of text.
