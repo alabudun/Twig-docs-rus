@@ -15,7 +15,7 @@ or an array as query string:
     {{ {'param': 'value', 'foo': 'bar'}|url_encode }}
     {# outputs "param=value&foo=bar" #}
 
-Заметка::
+Заметка:
 
     Internally, Twig uses the PHP `urlencode`_ or the `http_build_query`_ function.
 

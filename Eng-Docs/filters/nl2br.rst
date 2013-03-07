@@ -16,7 +16,7 @@ The ``nl2br`` filter inserts HTML line breaks before all newlines in a string:
 
     #}
 
-Заметка::
+Заметка:
 
     The ``nl2br`` filter pre-escapes the input before applying the
     transformation.

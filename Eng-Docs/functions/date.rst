@@ -33,7 +33,7 @@ If no argument is passed, the function returns the current date:
         {# always! #}
     {% endif %}
 
-Заметка::
+Заметка:
 
     You can set the default timezone globally by calling ``setTimezone()`` on
     the ``core`` extension instance:

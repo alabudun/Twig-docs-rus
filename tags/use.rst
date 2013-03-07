@@ -4,7 +4,7 @@
 Версия:: 1.1
     Horizontal reuse was added in Twig 1.1.
 
-.. Примечание::
+Примечание:
 
     Horizontal reuse is an advanced Twig feature that is hardly ever needed in
     regular templates. It is mainly used by projects that need to make
@@ -54,13 +54,13 @@ imported blocks are not outputted automatically):
     {% block title %}{% endblock %}
     {% block content %}{% endblock %}
 
-.. Примечание::
+Примечание:
 
     The ``use`` tag only imports a template if it does not extend another
     template, if it does not define macros, and if the body is empty. But it
     can *use* other templates.
 
-.. Примечание::
+Примечание:
 
     Because ``use`` statements are resolved independently of the context
     passed to the template, the template reference cannot be an expression.
@@ -102,7 +102,7 @@ template:
 In this example, ``parent()`` will correctly call the ``sidebar`` block from
 the ``blocks.html`` template.
 
-Примечание::
+Примечание:
 
     In Twig 1.2, renaming allows you to simulate inheritance by calling the
     "parent" block:
@@ -117,7 +117,7 @@ the ``blocks.html`` template.
             {{ block('parent_sidebar') }}
         {% endblock %}
 
-.. Примечание::
+Примечание:
 
     You can use as many ``use`` statements as you want in any given template.
     If two imported templates define the same block, the latest one wins.

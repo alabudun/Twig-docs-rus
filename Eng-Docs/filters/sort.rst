@@ -9,7 +9,7 @@ The ``sort`` filter sorts an array:
         ...
     {% endfor %}
 
-Заметка::
+Заметка:
 
     Internally, Twig uses the PHP `asort`_ function to maintain index
     association.

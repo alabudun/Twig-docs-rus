@@ -12,7 +12,7 @@ is the input charset:
 
     {{ data|convert_encoding('UTF-8', 'iso-2022-jp') }}
 
-Заметка::
+Заметка:
 
     This filter relies on the `iconv`_ or `mbstring`_ extension, so one of
     them must be installed. In case both are installed, `mbstring`_ is used by

@@ -12,7 +12,7 @@ introspecting its variables:
 
     {{ dump(user) }}
 
-Заметка::
+Заметка:
 
     The ``dump`` function is not available by default. You must add the
     ``Twig_Extension_Debug`` extension explicitly when creating your Twig
@@ -37,7 +37,7 @@ read:
         {{ dump(user) }}
     </pre>
 
-Примечание::
+Примечание:
 
     Using a ``pre`` tag is not needed when `XDebug`_ is enabled and
     ``html_errors`` is ``on``; as a bonus, the output is also nicer with
@@ -56,7 +56,7 @@ dumped:
 
     {{ dump() }}
 
-Заметка::
+Заметка:
 
     Internally, Twig uses the PHP `var_dump`_ function.
 

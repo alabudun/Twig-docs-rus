@@ -13,7 +13,7 @@ provided in a variable called ``users``:
         {% endfor %}
     </ul>
 
-.. Примечание::
+Примечание:
 
     A sequence can be either an array or an object implementing the
     ``Traversable`` interface.
@@ -74,7 +74,7 @@ Variable              Description
         {{ loop.index }} - {{ user.username }}
     {% endfor %}
 
-.. Примечание::
+Примечание:
 
     The ``loop.length``, ``loop.revindex``, ``loop.revindex0``, and
     ``loop.last`` variables are only available for PHP arrays, or objects that
@@ -103,7 +103,7 @@ The advantage is that the special loop variable will count correctly thus not
 counting the users not iterated over. Keep in mind that properties like
 ``loop.last`` will not be defined when using loop conditions.
 
-.. Примечание::
+Примечание:
 
     Using the ``loop`` variable within the condition is not recommended as it
     will probably not be doing what you expect it to. For instance, adding a

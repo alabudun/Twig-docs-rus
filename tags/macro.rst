@@ -23,7 +23,7 @@ Macros differs from native PHP functions in a few ways:
 But as PHP functions, macros don't have access to the current template
 variables.
 
-Примечание::
+Примечание:
 
     You can pass the whole context as an argument by using the special
     ``_context`` variable.
@@ -80,4 +80,4 @@ import it locally:
         </div>
     {% endmacro %}
 
-.. seealso:: :doc:`from<../tags/from>`, :doc:`import<../tags/import>`
+Дополнительно: :doc:`from<../tags/from>`, :doc:`import<../tags/import>`

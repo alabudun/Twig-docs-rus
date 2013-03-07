@@ -8,7 +8,7 @@ by one space:
 
     {% some_html|striptags %}
 
-Заметка::
+Заметка:
 
     Internally, Twig uses the PHP `strip_tags`_ function.
 

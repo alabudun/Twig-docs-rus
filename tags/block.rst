@@ -5,4 +5,4 @@
 
 Имена блоков могут состоять из цифр, букв и нижних подчеркиваний. "Тире" ``-`` в названиях блоков не допустимы.
 
-.. seealso:: :doc:`block<../functions/block>`, :doc:`parent<../functions/parent>`, :doc:`use<../tags/use>`, :doc:`extends<../tags/extends>`
+Дополнительно: :doc:`block<../functions/block>`, :doc:`parent<../functions/parent>`, :doc:`use<../tags/use>`, :doc:`extends<../tags/extends>`

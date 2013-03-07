@@ -3,7 +3,7 @@
 
 The ``extends`` tag can be used to extend a template from another one.
 
-.. Примечание::
+Примечание:
 
     Like PHP, Twig does not support multiple inheritance. So you can only have
     one extends tag called per rendering. However, Twig supports horizontal
@@ -265,4 +265,4 @@ instead:
         {% endif %}
     {% endblock head %}
 
-.. seealso:: :doc:`block<../functions/block>`, :doc:`block<../tags/block>`, :doc:`parent<../functions/parent>`, :doc:`use<../tags/use>`
+Дополнительно: :doc:`block<../functions/block>`, :doc:`block<../tags/block>`, :doc:`parent<../functions/parent>`, :doc:`use<../tags/use>`

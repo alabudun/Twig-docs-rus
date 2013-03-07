@@ -12,7 +12,7 @@
     {{ attribute(object, method, arguments) }}
     {{ attribute(array, item) }}
 
-Заметка::
+Заметка:
 
     The resolution algorithm is the same as the one used for the ``.``
     notation, except that the item can be any valid expression.

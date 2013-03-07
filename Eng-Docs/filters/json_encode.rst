@@ -7,7 +7,7 @@ The ``json_encode`` filter returns the JSON representation of a string:
 
     {{ data|json_encode() }}
 
-Заметка::
+Заметка:
 
     Internally, Twig uses the PHP `json_encode`_ function.
 

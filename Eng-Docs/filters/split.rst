@@ -38,7 +38,7 @@ chunks. Length is set by the ``limit`` argument (one character by default).
     {{ "aabbcc"|split('', 2) }}
     {# returns ['aa', 'bb', 'cc'] #}
 
-Заметка::
+Заметка:
 
     Internally, Twig uses the PHP `explode`_ or `str_split`_ (if delimiter is
     empty) functions for string splitting.

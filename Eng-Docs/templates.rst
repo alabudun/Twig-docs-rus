@@ -85,7 +85,7 @@ access the variable attribute:
     {# equivalent to the non-working foo.data-foo #}
     {{ attribute(foo, 'data-foo') }}
 
-Заметка::
+Заметка:
 
     It's important to know that the curly braces are *not* part of the
     variable but the print statement. If you access variables inside tags
@@ -113,7 +113,7 @@ throw an error (see :ref:`environment options<environment_options>`).
     * check if ``foo`` is an array and ``bar`` a valid element;
     * if not, return a ``null`` value.
 
-Заметка::
+Заметка:
 
     If you want to get a dynamic attribute on a variable, use the
     :doc:`attribute<functions/attribute>` function instead.
@@ -236,7 +236,7 @@ recommended as it can be confusing:
     {{ "now"|date('d/m/Y H:i', timezone="Europe/Paris") }}
     {{ "now"|date(timezone="Europe/Paris", 'd/m/Y H:i') }}
 
-Примечание::
+Примечание:
 
     Each function and filter documentation page has a section where the names
     of all arguments are listed when supported.
@@ -402,13 +402,13 @@ parent block:
         {{ parent() }}
     {% endblock %}
 
-Примечание::
+Примечание:
 
     The documentation page for the :doc:`extends<tags/extends>` tag describes
     more advanced features like block nesting, scope, dynamic inheritance, and
     conditional inheritance.
 
-Заметка::
+Заметка:
 
     Twig also supports multiple inheritance with the so called horizontal reuse
     with the help of the :doc:`use<tags/use>` tag. This is an advanced feature
@@ -424,7 +424,7 @@ everything by default.
 
 Twig supports both, automatic escaping is enabled by default.
 
-Заметка::
+Заметка:
 
     Automatic escaping is only supported if the *escaper* extension has been
     enabled (which is the default).
@@ -550,7 +550,7 @@ Expressions
 Twig allows expressions everywhere. These work very similar to regular PHP and
 even if you're not working with PHP you should feel comfortable with it.
 
-Заметка::
+Заметка:
 
     The operator precedence is as follows, with the lowest-precedence
     operators listed first: ``b-and``, ``b-xor``, ``b-or``, ``or``, ``and``,
@@ -609,7 +609,7 @@ Arrays and hashes can be nested:
 
     {% set foo = [1, {"foo": "bar"}] %}
 
-Примечание::
+Примечание:
 
     Using double-quoted or single-quoted strings has no impact on performance
     but string interpolation is only supported in double-quoted strings.
@@ -654,7 +654,7 @@ You can combine multiple expressions with the following operators:
 
 * ``(expr)``: Groups an expression.
 
-Заметка::
+Заметка:
 
     Twig also support bitwise operators (``b-and``, ``b-xor``, and ``b-or``).
 
@@ -679,7 +679,7 @@ It returns ``true`` if the left operand is contained in the right:
 
     {{ 'cd' in 'abcde' }}
 
-Примечание::
+Примечание:
 
     You can use this filter to perform a containment test on strings, arrays,
     or objects implementing the ``Traversable`` interface.

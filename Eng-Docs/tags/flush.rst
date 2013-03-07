@@ -10,7 +10,7 @@ The ``flush`` tag tells Twig to flush the output buffer:
 
     {% flush %}
 
-.. Примечание::
+Примечание:
 
     Internally, Twig uses the PHP `flush`_ function.
 

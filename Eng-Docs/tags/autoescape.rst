@@ -27,7 +27,7 @@ template to be escaped or not by using the ``autoescape`` tag:
         Everything will be outputted as is in this block
     {% endautoescape %}
 
-.. Примечание::
+Примечание:
 
     Before Twig 1.8, the syntax was different:
 
@@ -60,12 +60,12 @@ the :doc:`raw<../filters/raw>` filter:
 Functions returning template data (like :doc:`macros<macro>` and
 :doc:`parent<../functions/parent>`) always return safe markup.
 
-.. Примечание::
+Примечание:
 
     Twig is smart enough to not escape an already escaped value by the
     :doc:`escape<../filters/escape>` filter.
 
-.. Примечание::
+Примечание:
 
     The chapter :doc:`Twig for Developers<../api>` gives more information
     about when and how automatic escaping is applied.

@@ -37,7 +37,7 @@ You can disable access to the context by appending the ``only`` keyword:
     {# no variables will be accessible #}
     {% include 'template.html' only %}
 
-Примечание::
+Примечание:
 
     When including a template created by an end user, you should consider
     sandboxing it. More information in the :doc:`Twig for Developers<../api>`

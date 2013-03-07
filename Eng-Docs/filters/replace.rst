@@ -16,4 +16,4 @@ Arguments
 
  * ``replace_pairs``: The placeholder values
 
-.. seealso:: :doc:`format<format>`
+Дополнительно: :doc:`format<format>`

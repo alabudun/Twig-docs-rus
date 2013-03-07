@@ -11,7 +11,7 @@ The ``abs`` filter returns the absolute value.
 
     {# outputs 5 #}
 
-Заметка::
+Заметка:
 
     Internally, Twig uses the PHP `abs`_ function.
 

@@ -34,7 +34,7 @@ that looks up the templates in the ``/path/to/templates/`` folder. Different
 loaders are available and you can also write your own if you want to load
 templates from a database or other resources.
 
-Заметка::
+Заметка:
 
     Notice that the second argument of the environment is an array of options.
     The ``cache`` option is a compilation cache directory, where Twig caches
@@ -52,7 +52,7 @@ To render the template with some variables, call the ``render()`` method::
 
     echo $template->render(array('the' => 'variables', 'go' => 'here'));
 
-Заметка::
+Заметка:
 
     The ``display()`` method is a shortcut to output the template directly.
 
@@ -197,7 +197,7 @@ of strings bound to template names::
 This loader is very useful for unit testing. It can also be used for small
 projects where storing all templates in a single PHP file might make sense.
 
-Примечание::
+Примечание:
 
     When using the ``Array`` or ``String`` loaders with a cache mechanism, you
     should know that a new cache key is generated each time a template content
@@ -230,7 +230,7 @@ template from the above example, Twig will load it with ``$loader2`` but the
 ``Twig_Loader_Chain`` accepts any loader that implements
 ``Twig_LoaderInterface``.
 
-Заметка::
+Заметка:
 
     You can also add loaders via the ``addLoader()`` method.
 
@@ -291,7 +291,7 @@ As an example, here is how the built-in ``Twig_Loader_String`` reads::
 The ``isFresh()`` method must return ``true`` if the current cached template
 is still fresh, given the last modification time, or ``false`` otherwise.
 
-Примечание::
+Примечание:
 
     As of Twig 1.11.0, you can also implement ``Twig_ExistsLoaderInterface``
     to make your loader faster when used with the chain loader.
@@ -324,7 +324,7 @@ Built-in Extensions
 
 This section describes the features added by the built-in extensions.
 
-Примечание::
+Примечание:
 
     Read the chapter about extending Twig to learn how to create your own
     extensions.
@@ -429,7 +429,7 @@ The escaping rules are implemented as follows:
             {{ var|escape('js') }} {# won't be double-escaped #}
         {% endautoescape %}
 
-Заметка::
+Заметка:
 
     Note that autoescaping has some limitations as escaping is applied on
     expressions after evaluation. For instance, when working with

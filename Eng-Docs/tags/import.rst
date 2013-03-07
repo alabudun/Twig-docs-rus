@@ -49,9 +49,9 @@ namespace:
     </dl>
     <p>{{ textarea('comment') }}</p>
 
-Примечание::
+Примечание:
 
     To import macros from the current file, use the special ``_self`` variable
     for the source.
 
-.. seealso:: :doc:`macro<../tags/macro>`, :doc:`from<../tags/from>`
+Дополнительно: :doc:`macro<../tags/macro>`, :doc:`from<../tags/from>`

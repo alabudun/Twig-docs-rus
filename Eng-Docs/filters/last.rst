@@ -18,7 +18,7 @@ a string:
     {{ '1234'|last }}
     {# outputs 4 #}
 
-Заметка::
+Заметка:
 
     It also works with objects implementing the `Traversable`_ interface.
 

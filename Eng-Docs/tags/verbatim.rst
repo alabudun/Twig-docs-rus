@@ -18,7 +18,7 @@ this snippet:
         </ul>
     {% endverbatim %}
 
-.. Примечание::
+Примечание:
 
     The ``verbatim`` tag works in the exact same way as the old ``raw`` tag,
     but was renamed to avoid confusion with the ``raw`` filter.

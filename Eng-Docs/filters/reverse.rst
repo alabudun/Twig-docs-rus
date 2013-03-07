@@ -16,7 +16,7 @@ The ``reverse`` filter reverses a sequence, a mapping, or a string:
 
     {# outputs 4321 #}
 
-Заметка::
+Заметка:
 
     It also works with objects implementing the `Traversable`_ interface.
 

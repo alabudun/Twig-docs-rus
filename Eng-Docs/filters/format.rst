@@ -13,4 +13,4 @@ The ``format`` filter formats a given string by replacing the placeholders
 
 .. _`printf`: http://www.php.net/printf
 
-.. seealso:: :doc:`replace<replace>`
+Дополнительно: :doc:`replace<replace>`

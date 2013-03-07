@@ -52,7 +52,7 @@ The ``escape`` filter supports the following escaping strategies:
 
 * ``html_attr``: escapes a string for the **HTML attribute** context.
 
-Заметка::
+Заметка:
 
     Internally, ``escape`` uses the PHP native `htmlspecialchars`_ function
     for the HTML escaping strategy.

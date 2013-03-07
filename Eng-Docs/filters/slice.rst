@@ -54,7 +54,7 @@ negative then the sequence will stop that many elements from the end of the
 variable. If it is omitted, then the sequence will have everything from offset
 up until the end of the variable.
 
-Заметка::
+Заметка:
 
     It also works with objects implementing the `Traversable`_ interface.
 

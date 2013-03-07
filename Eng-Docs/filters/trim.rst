@@ -17,7 +17,7 @@ and end of a string:
 
     {# outputs '  I like Twig' #}
 
-Заметка::
+Заметка:
 
     Internally, Twig uses the PHP `trim`_ function.
 

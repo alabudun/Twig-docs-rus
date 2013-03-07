@@ -11,7 +11,7 @@ Twig can be extended in many ways; you can add extra tags, filters, tests,
 operators, global variables, and functions. You can even extend the parser
 itself with node visitors.
 
-Заметка::
+Заметка:
 
     The first section of this chapter describes how to extend Twig easily. If
     you want to reuse your changes in different projects or if you want to
@@ -297,7 +297,7 @@ variables from within a template. The tag can be used like follows:
 
     {# should output value #}
 
-Заметка::
+Заметка:
 
     The ``set`` tag is part of the Core extension and as such is always
     available. The built-in version is slightly more powerful and supports
@@ -372,7 +372,7 @@ from the token stream (``$this->parser->getStream()``):
 Parsing expressions is done by calling the ``parseExpression()`` like we did for
 the ``set`` tag.
 
-Примечание::
+Примечание:
 
     Reading the existing ``TokenParser`` classes is the best way to learn all
     the nitty-gritty details of the parsing process.
@@ -441,13 +441,13 @@ your code faster.
 Most of the time, it is useful to create a single extension for your project,
 to host all the specific tags and filters you want to add to Twig.
 
-Примечание::
+Примечание:
 
     When packaging your code into an extension, Twig is smart enough to
     recompile your templates whenever you make a change to it (when
     ``auto_reload`` is enabled).
 
-Заметка::
+Заметка:
 
     Before writing your own extensions, have a look at the Twig official
     extension repository: http://github.com/fabpot/Twig-extensions.
@@ -540,7 +540,7 @@ possible::
         }
     }
 
-Заметка::
+Заметка:
 
     Of course, this extension does nothing for now. We will customize it in
     the next sections.
@@ -557,7 +557,7 @@ main ``Environment`` object::
 Of course, you need to first load the extension file by either using
 ``require_once()`` or by using an autoloader (see `spl_autoload_register()`_).
 
-Примечание::
+Примечание:
 
     The bundled extensions are great examples of how extensions work.
 

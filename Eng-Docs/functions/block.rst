@@ -12,4 +12,4 @@ times, use the ``block`` function:
 
     {% block body %}{% endblock %}
 
-.. seealso:: :doc:`extends<../tags/extends>`, :doc:`parent<../functions/parent>`
+Дополнительно: :doc:`extends<../tags/extends>`, :doc:`parent<../functions/parent>`

@@ -17,4 +17,4 @@ parent block when overriding a block by using the ``parent`` function:
 The ``parent()`` call will return the content of the ``sidebar`` block as
 defined in the ``base.html`` template.
 
-.. seealso:: :doc:`extends<../tags/extends>`, :doc:`block<../functions/block>`, :doc:`block<../tags/block>`
+Дополнительно: :doc:`extends<../tags/extends>`, :doc:`block<../functions/block>`, :doc:`block<../tags/block>`

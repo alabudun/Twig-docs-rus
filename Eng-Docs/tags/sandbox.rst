@@ -15,7 +15,7 @@ template, when sandboxing is not enabled globally for the Twig environment:
     The ``sandbox`` tag is only available when the sandbox extension is
     enabled (see the :doc:`Twig for Developers<../api>` chapter).
 
-.. Примечание::
+Примечание:
 
     The ``sandbox`` tag can only be used to sandbox an include tag and it
     cannot be used to sandbox a section of a template. The following example
