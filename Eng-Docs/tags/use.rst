@@ -1,7 +1,7 @@
 ``use``
 =======
 
-.. versionadded:: 1.1
+Версия:: 1.1
     Horizontal reuse was added in Twig 1.1.
 
 .. Примечание::
@@ -79,7 +79,7 @@ is ignored. To avoid name conflicts, you can rename imported blocks:
     {% block title %}{% endblock %}
     {% block content %}{% endblock %}
 
-.. versionadded:: 1.3
+Версия:: 1.3
     The ``parent()`` support was added in Twig 1.3.
 
 The ``parent()`` function automatically determines the correct inheritance
@@ -102,7 +102,7 @@ template:
 In this example, ``parent()`` will correctly call the ``sidebar`` block from
 the ``blocks.html`` template.
 
-.. tip::
+Примечание::
 
     In Twig 1.2, renaming allows you to simulate inheritance by calling the
     "parent" block:

@@ -7,6 +7,6 @@
 
     {{ var is null }}
 
-.. note::
+Заметка::
 
     ``none`` is an alias for ``null``.

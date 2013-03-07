@@ -61,7 +61,7 @@ Here is the output for the ``Hello {{ name }}`` template:
     VAR_END_TYPE()
     EOF_TYPE()
 
-.. note::
+Заметка::
 
     You can change the default lexer use by Twig (``Twig_Lexer``) by calling
     the ``setLexer()`` method::
@@ -95,7 +95,7 @@ Here is the output for the ``Hello {{ name }}`` template:
       )
     )
 
-.. note::
+Заметка::
 
     The default parser (``Twig_TokenParser``) can be also changed by calling the
     ``setParser()`` method::
@@ -132,7 +132,7 @@ using)::
         // some more code
     }
 
-.. note::
+Заметка::
 
     As for the lexer and the parser, the default compiler (``Twig_Compiler``) can
     be changed by calling the ``setCompiler()`` method::

@@ -89,7 +89,7 @@ parent's full, unambiguous template path in the extends tag:
     {# page.twig in .../templates/mysite #}
     {% extends "default/page.twig" %} {# from .../templates #}
 
-.. note::
+Заметка::
 
     This recipe was inspired by the following Django wiki page:
     http://code.djangoproject.com/wiki/ExtendingTemplates
@@ -234,7 +234,7 @@ return ``false``.
 If you register more than one callback, Twig will call them in turn until one
 does not return ``false``.
 
-.. tip::
+Примечание::
 
     As the resolution of functions and filters is done during compilation,
     there is no overhead when registering these callbacks.
@@ -268,7 +268,7 @@ If you iterate over a set of files, you can pass the filename to the
         }
     }
 
-.. note::
+Заметка::
 
     This method won't catch any sandbox policy violations because the policy
     is enforced during template rendering (as Twig needs the context for some
@@ -319,7 +319,7 @@ This can be easily achieved with the following code::
 Using the Template name to set the default Escaping Strategy
 ------------------------------------------------------------
 
-.. versionadded:: 1.8
+Версия:: 1.8
     This recipe requires Twig 1.8 or later.
 
 The ``autoescape`` option determines the default escaping strategy to use when

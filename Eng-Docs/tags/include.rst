@@ -37,7 +37,7 @@ You can disable access to the context by appending the ``only`` keyword:
     {# no variables will be accessible #}
     {% include 'template.html' only %}
 
-.. tip::
+Примечание::
 
     When including a template created by an end user, you should consider
     sandboxing it. More information in the :doc:`Twig for Developers<../api>`
@@ -59,7 +59,7 @@ directly::
 
     $twig->loadTemplate('template.twig')->display(array('template' => $template));
 
-.. versionadded:: 1.2
+Версия:: 1.2
     The ``ignore missing`` feature has been added in Twig 1.2.
 
 You can mark an include with ``ignore missing`` in which case Twig will ignore
@@ -72,7 +72,7 @@ placed just after the template name. Here some valid examples:
     {% include 'sidebar.html' ignore missing with {'foo': 'bar'} %}
     {% include 'sidebar.html' ignore missing only %}
 
-.. versionadded:: 1.2
+Версия:: 1.2
     The possibility to pass an array of templates has been added in Twig 1.2.
 
 You can also provide a list of templates that are checked for existence before

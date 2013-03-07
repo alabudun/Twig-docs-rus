@@ -1,7 +1,7 @@
 ``number_format``
 =================
 
-.. versionadded:: 1.5
+Версия:: 1.5
     The number_format filter was added in Twig 1.5
 
 The ``number_format`` filter formats numbers.  It is a wrapper around PHP's

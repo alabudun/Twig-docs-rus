@@ -34,7 +34,7 @@
     {# template.html не имеет доступа к переменным "подключателя" #}
     {% include 'template.html' only %}
 
-.. tip::
+Примечание::
 
     Когда подключаемый шаблон создан конечным пользователям вам следует
 
@@ -58,7 +58,7 @@ directly::
 
     $twig->loadTemplate('template.twig')->display(array('template' => $template));
 
-.. versionadded:: 1.2
+Версия:: 1.2
     The ``ignore missing`` feature has been added in Twig 1.2.
 
 You can mark an include with ``ignore missing`` in which case Twig will ignore
@@ -71,7 +71,7 @@ placed just after the template name. Here some valid examples:
     {% include 'sidebar.html' ignore missing with {'foo': 'bar'} %}
     {% include 'sidebar.html' ignore missing only %}
 
-.. versionadded:: 1.2
+Версия:: 1.2
     The possibility to pass an array of templates has been added in Twig 1.2.
 
 You can also provide a list of templates that are checked for existence before

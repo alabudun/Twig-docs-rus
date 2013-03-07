@@ -1,7 +1,7 @@
 ``escape``
 ==========
 
-.. versionadded:: 1.9.0
+Версия:: 1.9.0
     The ``css``, ``url``, and ``html_attr`` strategies were added in Twig
     1.9.0.
 
@@ -52,7 +52,7 @@ The ``escape`` filter supports the following escaping strategies:
 
 * ``html_attr``: escapes a string for the **HTML attribute** context.
 
-.. note::
+Заметка::
 
     Internally, ``escape`` uses the PHP native `htmlspecialchars`_ function
     for the HTML escaping strategy.

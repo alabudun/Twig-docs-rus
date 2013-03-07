@@ -162,7 +162,7 @@ the parent template::
 
     $twig->display('template.twig', array('layout' => $layout));
 
-.. versionadded:: 1.2
+Версия:: 1.2
     The possibility to pass an array of templates has been added in Twig 1.2.
 
 You can also provide a list of templates that are checked for existence. The

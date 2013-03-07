@@ -1,7 +1,7 @@
 ``reverse``
 ===========
 
-.. versionadded:: 1.6
+Версия:: 1.6
     Support for strings has been added in Twig 1.6.
 
 The ``reverse`` filter reverses a sequence, a mapping, or a string:
@@ -16,7 +16,7 @@ The ``reverse`` filter reverses a sequence, a mapping, or a string:
 
     {# outputs 4321 #}
 
-.. note::
+Заметка::
 
     It also works with objects implementing the `Traversable`_ interface.
 

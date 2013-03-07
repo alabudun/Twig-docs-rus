@@ -1,7 +1,7 @@
 ``include``
 ===========
 
-.. versionadded:: 1.12
+Версия:: 1.12
     The include function was added in Twig 1.12.
 
 The ``include`` function returns the rendered content of a template:

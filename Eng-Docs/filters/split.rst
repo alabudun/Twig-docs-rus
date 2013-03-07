@@ -1,7 +1,7 @@
 ``split``
 =========
 
-.. versionadded:: 1.10.3
+Версия:: 1.10.3
     The split filter was added in Twig 1.10.3.
 
 The ``split`` filter splits a string by the given delimiter and returns a list
@@ -38,7 +38,7 @@ chunks. Length is set by the ``limit`` argument (one character by default).
     {{ "aabbcc"|split('', 2) }}
     {# returns ['aa', 'bb', 'cc'] #}
 
-.. note::
+Заметка::
 
     Internally, Twig uses the PHP `explode`_ or `str_split`_ (if delimiter is
     empty) functions for string splitting.

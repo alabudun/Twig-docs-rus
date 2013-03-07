@@ -1,7 +1,7 @@
 ``template_from_string``
 ========================
 
-.. versionadded:: 1.11
+Версия:: 1.11
     The template_from_string function was added in Twig 1.11.
 
 The ``template_from_string`` function loads a template from a string:
@@ -11,7 +11,7 @@ The ``template_from_string`` function loads a template from a string:
     {{ include(template_from_string("Hello {{ name }}") }}
     {{ include(template_from_string(page.template)) }}
 
-.. note::
+Заметка::
 
     The ``template_from_string`` function is not available by default. You
     must add the ``Twig_Extension_StringLoader`` extension explicitly when
@@ -20,7 +20,7 @@ The ``template_from_string`` function loads a template from a string:
         $twig = new Twig_Environment(...);
         $twig->addExtension(new Twig_Extension_StringLoader());
 
-.. note::
+Заметка::
 
     Even if you will probably always use the ``template_from_string`` function
     with the ``include`` function, you can use it with any tag or function that

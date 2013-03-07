@@ -56,7 +56,7 @@ Installing via Composer (recommended)
 
     php composer.phar install
 
-.. note::
+Заметка::
     If you want to learn more about Composer, the ``composer.json`` file syntax
     and its usage, you can read the `online documentation`_.
 
@@ -84,7 +84,7 @@ Installing the PEAR package
 Installing the C extension
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. versionadded:: 1.4
+Версия:: 1.4
     The C extension was added in Twig 1.4.
 
 Twig comes with a C extension that enhances the performance of the Twig
@@ -109,7 +109,7 @@ advantage of the C extension. Note that this extension does not replace the
 PHP code but only provides an optimized version of the
 ``Twig_Template::getAttribute()`` method.
 
-.. tip::
+Примечание::
 
     On Windows, you can also simply download and install a `pre-built DLL`_.
 
@@ -131,7 +131,7 @@ autoload mechanism by replacing the previous snippet for::
 
     require_once '/path/to/vendor/autoload.php'
 
-.. note::
+Заметка::
 
     Twig follows the PEAR convention names for its classes, which means you
     can easily integrate Twig classes loading in your own autoloader.

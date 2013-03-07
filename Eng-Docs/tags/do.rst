@@ -1,7 +1,7 @@
 ``do``
 ======
 
-.. versionadded:: 1.5
+Версия:: 1.5
     The do tag was added in Twig 1.5.
 
 The ``do`` tag works exactly like the regular variable expression (``{{ ...

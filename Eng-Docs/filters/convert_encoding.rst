@@ -1,7 +1,7 @@
 ``convert_encoding``
 ====================
 
-.. versionadded:: 1.4
+Версия:: 1.4
     The ``convert_encoding`` filter was added in Twig 1.4.
 
 The ``convert_encoding`` filter converts a string from one encoding to
@@ -12,7 +12,7 @@ is the input charset:
 
     {{ data|convert_encoding('UTF-8', 'iso-2022-jp') }}
 
-.. note::
+Заметка::
 
     This filter relies on the `iconv`_ or `mbstring`_ extension, so one of
     them must be installed. In case both are installed, `mbstring`_ is used by

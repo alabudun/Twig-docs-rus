@@ -1,7 +1,7 @@
 ``verbatim``
 ============
 
-.. versionadded:: 1.12
+Версия:: 1.12
     The ``verbatim`` tag was added in Twig 1.12 (it was named ``raw`` before).
 
 The ``verbatim`` tag marks sections as being raw text that should not be

@@ -85,7 +85,7 @@ access the variable attribute:
     {# equivalent to the non-working foo.data-foo #}
     {{ attribute(foo, 'data-foo') }}
 
-.. note::
+Заметка::
 
     It's important to know that the curly braces are *not* part of the
     variable but the print statement. If you access variables inside tags
@@ -113,7 +113,7 @@ throw an error (see :ref:`environment options<environment_options>`).
     * check if ``foo`` is an array and ``bar`` a valid element;
     * if not, return a ``null`` value.
 
-.. note::
+Заметка::
 
     If you want to get a dynamic attribute on a variable, use the
     :doc:`attribute<functions/attribute>` function instead.
@@ -194,7 +194,7 @@ built-in functions.
 Named Arguments
 ---------------
 
-.. versionadded:: 1.12
+Версия:: 1.12
     Support for named arguments was added in Twig 1.12.
 
 Arguments for filters and functions can also be passed as *named arguments*:
@@ -236,7 +236,7 @@ recommended as it can be confusing:
     {{ "now"|date('d/m/Y H:i', timezone="Europe/Paris") }}
     {{ "now"|date(timezone="Europe/Paris", 'd/m/Y H:i') }}
 
-.. tip::
+Примечание::
 
     Each function and filter documentation page has a section where the names
     of all arguments are listed when supported.
@@ -402,13 +402,13 @@ parent block:
         {{ parent() }}
     {% endblock %}
 
-.. tip::
+Примечание::
 
     The documentation page for the :doc:`extends<tags/extends>` tag describes
     more advanced features like block nesting, scope, dynamic inheritance, and
     conditional inheritance.
 
-.. note::
+Заметка::
 
     Twig also supports multiple inheritance with the so called horizontal reuse
     with the help of the :doc:`use<tags/use>` tag. This is an advanced feature
@@ -424,7 +424,7 @@ everything by default.
 
 Twig supports both, automatic escaping is enabled by default.
 
-.. note::
+Заметка::
 
     Automatic escaping is only supported if the *escaper* extension has been
     enabled (which is the default).
@@ -497,7 +497,7 @@ For bigger sections it makes sense to mark a block
 Macros
 ------
 
-.. versionadded:: 1.12
+Версия:: 1.12
     Support for default argument values was added in Twig 1.12.
 
 Macros are comparable with functions in regular programming languages. They
@@ -550,7 +550,7 @@ Expressions
 Twig allows expressions everywhere. These work very similar to regular PHP and
 even if you're not working with PHP you should feel comfortable with it.
 
-.. note::
+Заметка::
 
     The operator precedence is as follows, with the lowest-precedence
     operators listed first: ``b-and``, ``b-xor``, ``b-or``, ``or``, ``and``,
@@ -560,7 +560,7 @@ even if you're not working with PHP you should feel comfortable with it.
 Literals
 ~~~~~~~~
 
-.. versionadded:: 1.5
+Версия:: 1.5
     Support for hash keys as names and expressions was added in Twig 1.5.
 
 The simplest form of expressions are literals. Literals are representations
@@ -609,7 +609,7 @@ Arrays and hashes can be nested:
 
     {% set foo = [1, {"foo": "bar"}] %}
 
-.. tip::
+Примечание::
 
     Using double-quoted or single-quoted strings has no impact on performance
     but string interpolation is only supported in double-quoted strings.
@@ -654,7 +654,7 @@ You can combine multiple expressions with the following operators:
 
 * ``(expr)``: Groups an expression.
 
-.. note::
+Заметка::
 
     Twig also support bitwise operators (``b-and``, ``b-xor``, and ``b-or``).
 
@@ -679,7 +679,7 @@ It returns ``true`` if the left operand is contained in the right:
 
     {{ 'cd' in 'abcde' }}
 
-.. tip::
+Примечание::
 
     You can use this filter to perform a containment test on strings, arrays,
     or objects implementing the ``Traversable`` interface.
@@ -726,7 +726,7 @@ tests.
 Other Operators
 ~~~~~~~~~~~~~~~
 
-.. versionadded:: 1.12.0
+Версия:: 1.12.0
     Support for the extended ternary operator was added in Twig 1.12.0.
 
 The following operators are very useful but don't fit into any of the other
@@ -757,7 +757,7 @@ categories:
 String Interpolation
 ~~~~~~~~~~~~~~~~~~~~
 
-.. versionadded:: 1.5
+Версия:: 1.5
     String interpolation was added in Twig 1.5.
 
 String interpolation (`#{expression}`) allows any valid expression to appear
@@ -772,7 +772,7 @@ inserted into the string:
 Whitespace Control
 ------------------
 
-.. versionadded:: 1.1
+Версия:: 1.1
     Tag level whitespace control was added in Twig 1.1.
 
 The first newline after a template tag is removed automatically (like in PHP.)

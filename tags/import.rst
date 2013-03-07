@@ -49,7 +49,7 @@ namespace:
     </dl>
     <p>{{ textarea('comment') }}</p>
 
-.. tip::
+Примечание::
 
     To import macros from the current file, use the special ``_self`` variable
     for the source.

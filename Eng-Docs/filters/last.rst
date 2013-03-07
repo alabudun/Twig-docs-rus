@@ -1,7 +1,7 @@
 ``last``
 ========
 
-.. versionadded:: 1.12.2
+Версия:: 1.12.2
     The last filter was added in Twig 1.12.2.
 
 The ``last`` filter returns the last "element" of a sequence, a mapping, or
@@ -18,7 +18,7 @@ a string:
     {{ '1234'|last }}
     {# outputs 4 #}
 
-.. note::
+Заметка::
 
     It also works with objects implementing the `Traversable`_ interface.
 

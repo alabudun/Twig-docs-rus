@@ -1,61 +1,54 @@
 ``embed``
 =========
 
-.. versionadded:: 1.8
-    The ``embed`` tag was added in Twig 1.8.
+Версия:: 1.8
+    Тег ``embed`` добавлен в Twig 1.8.
 
-The ``embed`` tag combines the behaviour of :doc:`include<include>` and
-:doc:`extends<extends>`.
-It allows you to include another template's contents, just like ``include``
-does. But it also allows you to override any block defined inside the
-included template, like when extending a template.
+Тег ``embed`` комбинирует в себе поведение :doc:`include<include>` и :doc:`extends<extends>`. Он позволяет вам подключать другие шаблоны также, как  ``include``, однако позволяет заменить любой блок внутри подключенного:
 
-Think of an embedded template as a "micro layout skeleton".
+Считайте встроенные шаблоны "микро-основой макета"
 
 .. code-block:: jinja
 
     {% embed "teasers_skeleton.twig" %}
-        {# These blocks are defined in "teasers_skeleton.twig" #}
-        {# and we override them right here:                    #}
+        {# Этот блок определен в "teasers_skeleton.twig" #}
+        {# И мы переопределим его здесь #}
         {% block left_teaser %}
-            Some content for the left teaser box
+            Какой-то текст слева
         {% endblock %}
         {% block right_teaser %}
-            Some content for the right teaser box
+            какой-то текст с права
         {% endblock %}
     {% endembed %}
 
-The ``embed`` tag takes the idea of template inheritance to the level of
-content fragments. While template inheritance allows for "document skeletons",
-which are filled with life by child templates, the ``embed`` tag allows you to
-create "skeletons" for smaller units of content and re-use and fill them
-anywhere you like.
 
-Since the use case may not be obvious, let's look at a simplified example.
-Imagine a base template shared by multiple HTML pages, defining a single block
-named "content":
+Тег ``embed`` берет свое начало от наследования шаблонов кусками. В то время, как наследование позволяет создать основу документа, а наполнение переложить на "плечи детей", тег ``embed`` дает возможность создать основу для маленьких кусочков и повторно использовать везде, где захотите.
+
+Прежде чем использовать
+Использование таких конструкций может быть не достаточно очевидно, давайте рассмотрим простейший пример. Представьте себе базовый шаблон, используйщийся на многих страницах, определим блок "content"
 
 .. code-block:: text
 
-    ┌─── page layout ─────────────────────┐
+    ┌─── макет страницы ──────────────────┐
     │                                     │
     │           ┌── block "content" ──┐   │
     │           │                     │   │
     │           │                     │   │
-    │           │ (child template to  │   │
-    │           │  put content here)  │   │
+    │           │ (дочерний шаблон    |   |
+    |           | поместит содержимое │   │
+    │           │  сюда)              │   │
     │           │                     │   │
     │           │                     │   │
     │           └─────────────────────┘   │
     │                                     │
     └─────────────────────────────────────┘
 
-Some pages ("foo" and "bar") share the same content structure -
-two vertically stacked boxes:
+
+Представим две страницы "foo" и "bar". Они используютодинаковую структуру - два вертикальных блока:
 
 .. code-block:: text
 
-    ┌─── page layout ─────────────────────┐
+    ┌─── макет страницы ──────────────────┐
     │                                     │
     │           ┌── block "content" ──┐   │
     │           │ ┌─ block "top" ───┐ │   │
@@ -68,15 +61,14 @@ two vertically stacked boxes:
     │                                     │
     └─────────────────────────────────────┘
 
-While other pages ("boom" and "baz") share a different content structure -
-two boxes side by side:
+Пока другие страницы "boom" и "baz" используют другую структуры - два блока стоят сторона к стороне:
 
 .. code-block:: text
 
     ┌─── page layout ─────────────────────┐
     │                                     │
     │           ┌── block "content" ──┐   │
-    │           │                     │   │    
+    │           │                     │   │
     │           │ ┌ block ┐ ┌ block ┐ │   │
     │           │ │"left" │ │"right"│ │   │
     │           │ │       │ │       │ │   │
@@ -86,35 +78,21 @@ two boxes side by side:
     │                                     │
     └─────────────────────────────────────┘
 
-Without the ``embed`` tag, you have two ways to design your templates:
+Без тега ``embed`` у вас есть два варианта создать шаблон:
 
- * Create two "intermediate" base templates that extend the master layout
-   template: one with vertically stacked boxes to be used by the "foo" and
-   "bar" pages and another one with side-by-side boxes for the "boom" and
-   "baz" pages.
+ * Создать два базовых шаблона, которые унаследованы от оригинального шаблона-макета: тот, что с вертикально стоящими блоками будет использоваться для страниц "foo" и "bar", а второй для страниц "boom" и "baz".
 
- * Embed the markup for the top/bottom and left/right boxes into each page 
-   template directly.
+ * Добавить разметку для верхнего, нижнего, левого и правого блока на каждую страницу напрямую
 
-These two solutions do not scale well because they each have a major drawback:
+Эти решения не достаточно хорошо масштабируются, поэтому имеют следующие недостатки:
 
- * The first solution may indeed work for this simplified example. But imagine
-   we add a sidebar, which may again contain different, recurring structures
-   of content. Now we would need to create intermediate base templates for
-   all occurring combinations of content structure and sidebar structure...
-   and so on.
+ * Первый вариант имеет право на существование. Однако это упрощенный пример. Но представьте, мы добавим боковую панель, которая может включать в себя другой повторяющийся контент. Теперь нам нужно создать базовые шаблоны для всех возможных комбинаций.
 
- * The second solution involves duplication of common code with all its negative
-   consequences: any change involves finding and editing all affected copies
-   of the structure, correctness has to be verified for each copy, copies may
-   go out of sync by careless modifications etc.
+ * Второй вариант предполагает дублирование исходного кода со всеми вытекающими: любые изменения влекут за собой ручное изменение скопированных участков, в итоге один и тот же код станет отличаться ...
 
-In such a situation, the ``embed`` tag comes in handy. The common layout
-code can live in a single base template, and the two different content structures,
-let's call them "micro layouts" go into separate templates which are embedded
-as necessary:
+В такой ситуации использовать полезно использовать тег ``embed``. Общий макет может быть в одном базовом шаблоне, и два различных вариантов содержмого, давайте назовем их мини-макеты и разобьем шаблоны:
 
-Page template ``foo.twig``:
+Шаблон ``foo.twig``:
 
 .. code-block:: jinja
 
@@ -123,35 +101,34 @@ Page template ``foo.twig``:
     {% block content %}
         {% embed "vertical_boxes_skeleton.twig" %}
             {% block top %}
-                Some content for the top box
+                Текст для верхнего блока
             {% endblock %}
 
             {% block bottom %}
-                Some content for the bottom box
+                Текст для нижнего блока
             {% endblock %}
         {% endembed %}
     {% endblock %}
 
-And here is the code for ``vertical_boxes_skeleton.twig``:
+А здесь код ``vertical_boxes_skeleton.twig``:
 
 .. code-block:: html+jinja
 
     <div class="top_box">
         {% block top %}
-            Top box default content
+            Текст верхнего блока по умолчанию
         {% endblock %}
     </div>
 
     <div class="bottom_box">
         {% block bottom %}
-            Bottom box default content
+            Текст нижнего блока по умолчанию
         {% endblock %}
     </div>
 
-The goal of the ``vertical_boxes_skeleton.twig`` template being to factor
-out the HTML markup for the boxes.
+Цель ``vertical_boxes_skeleton.twig`` вынести разметку блоков.
 
-The ``embed`` tag takes the exact same arguments as the ``include`` tag:
+Тег ``embed`` принимает точно такие же аргументы, как тег``include``:
 
 .. code-block:: jinja
 

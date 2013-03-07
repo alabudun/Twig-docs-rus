@@ -1,7 +1,7 @@
 ``embed``
 =========
 
-.. versionadded:: 1.8
+Версия:: 1.8
     The ``embed`` tag was added in Twig 1.8.
 
 The ``embed`` tag combines the behaviour of :doc:`include<include>` and
@@ -76,7 +76,7 @@ two boxes side by side:
     ┌─── page layout ─────────────────────┐
     │                                     │
     │           ┌── block "content" ──┐   │
-    │           │                     │   │    
+    │           │                     │   │
     │           │ ┌ block ┐ ┌ block ┐ │   │
     │           │ │"left" │ │"right"│ │   │
     │           │ │       │ │       │ │   │
@@ -93,7 +93,7 @@ Without the ``embed`` tag, you have two ways to design your templates:
    "bar" pages and another one with side-by-side boxes for the "boom" and
    "baz" pages.
 
- * Embed the markup for the top/bottom and left/right boxes into each page 
+ * Embed the markup for the top/bottom and left/right boxes into each page
    template directly.
 
 These two solutions do not scale well because they each have a major drawback:

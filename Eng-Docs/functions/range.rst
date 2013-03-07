@@ -31,7 +31,7 @@ function (with a step of 1):
         {{ i }},
     {% endfor %}
 
-.. tip::
+Примечание::
 
     The ``range`` function works as the native PHP `range`_ function.
 

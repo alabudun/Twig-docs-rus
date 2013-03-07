@@ -1,12 +1,10 @@
 ``verbatim``
 ============
 
-.. versionadded:: 1.12
-    The ``verbatim`` tag was added in Twig 1.12 (it was named ``raw`` before).
+Версия:: 1.12
+    Тег ``verbatim`` добавлен в  Twig 1.12 (до этого он назывался ``raw``).
 
-The ``verbatim`` tag marks sections as being raw text that should not be
-parsed. For example to put Twig syntax as example into a template you can use
-this snippet:
+Тег ``verbatim`` сообщает шаблонизатору не обрабатывать содержимое блока:
 
 .. code-block:: jinja
 
@@ -20,5 +18,4 @@ this snippet:
 
 .. Примечание::
 
-    The ``verbatim`` tag works in the exact same way as the old ``raw`` tag,
-    but was renamed to avoid confusion with the ``raw`` filter.
+    Тег ``verbatim`` работает абсолютно также, как тег ``raw`` но был переименовен, чтобы не путать с фильтром `raw`.

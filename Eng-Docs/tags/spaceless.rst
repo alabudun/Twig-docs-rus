@@ -18,19 +18,19 @@ This tag is not meant to "optimize" the size of the generated HTML content but
 merely to avoid extra whitespace between HTML tags to avoid browser rendering
 quirks under some circumstances.
 
-.. tip::
+Примечание::
 
     If you want to optimize the size of the generated HTML content, gzip
     compress the output instead.
 
-.. tip::
+Примечание::
 
     If you want to create a tag that actually removes all extra whitespace in
     an HTML string, be warned that this is not as easy as it seems to be
     (think of ``textarea`` or ``pre`` tags for instance). Using a third-party
     library like Tidy is probably a better idea.
 
-.. tip::
+Примечание::
 
     For more information on whitespace control, read the
     :doc:`dedicated<../templates>` section of the documentation and learn how

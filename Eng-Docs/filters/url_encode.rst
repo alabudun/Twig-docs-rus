@@ -1,7 +1,7 @@
 ``url_encode``
 ==============
 
-.. versionadded:: 1.12.3
+Версия:: 1.12.3
     Support for encoding an array as query string was added in Twig 1.12.3.
 
 The ``url_encode`` filter percent encodes a given string as URL segment
@@ -15,7 +15,7 @@ or an array as query string:
     {{ {'param': 'value', 'foo': 'bar'}|url_encode }}
     {# outputs "param=value&foo=bar" #}
 
-.. note::
+Заметка::
 
     Internally, Twig uses the PHP `urlencode`_ or the `http_build_query`_ function.
 

@@ -1,37 +1,25 @@
 ``spaceless``
 =============
 
-Use the ``spaceless`` tag to remove whitespace *between HTML tags*, not
-whitespace within HTML tags or whitespace in plain text:
+Используйте тег ``spaceless`` чтобы убрать пробельные символы *между HTML-тегами*. Тег не будет убирать пробелы между информацией внутри тегом и границей тега, или внутри текста:
 
 .. code-block:: jinja
 
     {% spaceless %}
         <div>
-            <strong>foo</strong>
+            <strong>текст</strong>
         </div>
     {% endspaceless %}
 
-    {# output will be <div><strong>foo</strong></div> #}
+    {# на выходе: <div><strong>текст</strong></div> #}
 
-This tag is not meant to "optimize" the size of the generated HTML content but
-merely to avoid extra whitespace between HTML tags to avoid browser rendering
-quirks under some circumstances.
 
-.. tip::
+Тег не предназначен для оптимизации генерируемого HTML-документа, но позволяет избежать причуд в некоторых браузерах
 
-    If you want to optimize the size of the generated HTML content, gzip
-    compress the output instead.
+Заметка::
 
-.. tip::
+    Если вы хотите оптимизировать размер страницы - используйте gzip сжатие.
 
-    If you want to create a tag that actually removes all extra whitespace in
-    an HTML string, be warned that this is not as easy as it seems to be
-    (think of ``textarea`` or ``pre`` tags for instance). Using a third-party
-    library like Tidy is probably a better idea.
+Заметка::
 
-.. tip::
-
-    For more information on whitespace control, read the
-    :doc:`dedicated<../templates>` section of the documentation and learn how
-    you can also use the whitespace control modifier on your tags.
+    Если вы задумаете написать тег, удаляющий лишние пробелы, будьте осторожны - это не так-то просто(подумаете о  ``textarea`` или ``pre``). Использование сторонних библиотек, на пример Tidy возможно будет идеей.
